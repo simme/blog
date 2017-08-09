@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://iamsim.me/the-coordinator-pattern/</loc>
+    <lastmod>2016-07-19T17:12:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/uistackview---uitextview-need-constraints-for-y-position-or-height/</loc>
+    <lastmod>2016-06-27T19:00:07+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/swift-equatable-and-hashable/</loc>
+    <lastmod>2016-05-31T04:33:49+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/delegate-calls-wrapped-in-computed-properties/</loc>
+    <lastmod>2016-05-30T11:36:44+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/getting-rid-of-typographic-orphans-with-swift/</loc>
+    <lastmod>2016-05-20T05:30:38+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/uistackview-left-align-without-stretching/</loc>
+    <lastmod>2016-05-19T12:32:10+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/live-debugging-node.js-in-vim-update/</loc>
+    <lastmod>2015-10-09T05:29:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/my-r%C3%A9sum%C3%A9-or-how-i-accidentally-built-a-static-site-generator/</loc>
+    <lastmod>2015-09-14T18:06:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/reactive-cocoa/</loc>
+    <lastmod>2015-08-16T18:44:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/nodes-require-and-browserify-take-2/</loc>
+    <lastmod>2015-08-16T18:41:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/my-watch-and-i/</loc>
+    <lastmod>2015-08-14T05:15:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/uistackview-and-autolayout/</loc>
+    <lastmod>2015-07-31T19:36:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/ios-storyboard-tips--tricks/</loc>
+    <lastmod>2015-05-08T19:46:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/mac-app-of-the-week/</loc>
+    <lastmod>2015-04-20T17:43:40+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/the-trello-css-guide/</loc>
+    <lastmod>2015-04-18T17:44:47+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/on-getting-things-done/</loc>
+    <lastmod>2015-04-18T15:55:16+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/jared-tries-a-watch/</loc>
+    <lastmod>2015-04-14T19:00:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/the-wars-to-come/</loc>
+    <lastmod>2015-04-14T18:48:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/speaking-of-podcasts/</loc>
+    <lastmod>2015-04-11T06:32:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/design-details/</loc>
+    <lastmod>2015-04-09T17:38:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/more-than-a-coder/</loc>
+    <lastmod>2015-02-28T08:22:32+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/building-an-app-with-ampersand.js/</loc>
+    <lastmod>2015-01-05T11:21:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/taking-advantage-of-nodes-require-algorithm-with-browserify/</loc>
+    <lastmod>2014-12-22T21:02:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/bye-bye-grunt-bye-bye-gulp.-hello-package.json./</loc>
+    <lastmod>2014-11-16T14:33:54+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/lazy-properties-in-swift/</loc>
+    <lastmod>2014-09-19T19:34:41+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/the-obsolescence-of-the-apple-watch/</loc>
+    <lastmod>2014-09-19T11:19:52+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/set-your-npm-init-defaults/</loc>
+    <lastmod>2014-09-18T16:16:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/web-app-architecture-discussion/</loc>
+    <lastmod>2014-09-05T10:04:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/live-debugging-node.js-in-vim/</loc>
+    <lastmod>2014-08-13T03:58:22+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/delegates-in-javascript/</loc>
+    <lastmod>2014-08-10T18:20:21+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/cleaning-up-your-git-repo/</loc>
+    <lastmod>2014-04-23T10:26:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/jank-free/</loc>
+    <lastmod>2014-03-25T03:17:34+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/using-localstorage-as-a-message-bus-between-windows/</loc>
+    <lastmod>2014-03-25T03:15:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/css--complex-style-script/</loc>
+    <lastmod>2014-03-01T12:17:33+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/minolta-autocord--servicing-the-focus-helicoid/</loc>
+    <lastmod>2014-01-30T20:26:23+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/do-you-even-backup/</loc>
+    <lastmod>2014-01-22T12:44:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/how-to-correctly-defer-loading-of-javascript/</loc>
+    <lastmod>2014-01-01T21:22:29+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/the-zeiss-ikon-nettar-516/2/</loc>
+    <lastmod>2014-01-01T15:05:06+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/index.xml</loc>
+    <lastmod>2016-07-19T17:12:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/apple/</loc>
+    <lastmod>2015-04-14T19:00:13+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/apple-watch/</loc>
+    <lastmod>2015-08-14T05:15:26+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/apps/</loc>
+    <lastmod>2015-04-20T17:43:40+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/computer-hygiene/</loc>
+    <lastmod>2014-01-22T12:44:27+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/css/</loc>
+    <lastmod>2015-04-18T17:44:47+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/film-photography/</loc>
+    <lastmod>2014-01-30T20:26:23+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/git/</loc>
+    <lastmod>2014-04-23T10:26:17+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/gtd/</loc>
+    <lastmod>2015-04-18T15:55:16+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/ios/</loc>
+    <lastmod>2016-07-19T17:12:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/javascript/</loc>
+    <lastmod>2015-10-09T05:29:23+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/node.js/</loc>
+    <lastmod>2014-09-18T16:16:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/podcasts/</loc>
+    <lastmod>2015-04-11T06:32:13+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/post/</loc>
+    <lastmod>2016-07-19T17:12:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/ramblings/</loc>
+    <lastmod>2015-09-14T18:06:56+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/reading/</loc>
+    <lastmod>2015-02-28T08:22:32+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/swift/</loc>
+    <lastmod>2014-09-19T19:34:41+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/</loc>
+    <lastmod>2015-04-14T19:00:13+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/web/</loc>
+    <lastmod>2014-09-05T10:04:31+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/web-development/</loc>
+    <lastmod>2014-11-16T14:33:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://iamsim.me/tags/work/</loc>
+    <lastmod>2015-04-14T18:48:29+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

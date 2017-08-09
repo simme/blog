@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+    <article class="post">
+      <span class="date">August 13, 2014</span>
+      <h1>Live Debugging Node.js in Vim</h1>
+      <div class="content">
+         <p>I just discovered something pretty neat. There&rsquo;s a Node module called <a href="https://github.com/sidorares/node-vim-debugger">node-vim-debugger</a> that let&rsquo;s you debug running Node processes, right inside Vim. And it&rsquo;s insanely simple.</p>
+
+<p>First do:</p>
+
+<p><code>$ npm install -g vimdebug</code></p>
+
+<p>This will install a global module that you&rsquo;ll use to facilitate a connection between Vim and your Node process.</p>
+
+<p>Then let&rsquo;s create a simple Node server to illustrate. Save it as <code>server.js</code>.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">debugger</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="o">?</span> <span class="s1">&#39;bar&#39;</span> <span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">foo</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+</code></pre></div>
+
+<p>You&rsquo;ll notice the <code>debugger</code> statement. If you&rsquo;re unfamiliar with that it&rsquo;s basically a breakpoint defined in code.</p>
+
+<p>Pretend that this is your super fancy web application server and you&rsquo;re having some trouble figuring out how to solve an annoying bug you have. For some reason the server always prints <code>foo</code> when requesting a page. Odd.</p>
+
+<p>Now start your script with:</p>
+
+<p><code>$ node --debug-brk server.js</code></p>
+
+<p>This will start your server in debug mode with breakpoints enabled.</p>
+
+<p>Now you have to start the agent that hooks your process up to Vim:</p>
+
+<p><code>$ node-vim-inspector</code></p>
+
+<p>Now, inside Vim, where you were just editing <code>server.js</code> type:</p>
+
+<p><code>:nbs</code></p>
+
+<p>You&rsquo;ll notice a <code>-&gt;</code> symbol at the top of the file. By default node in debug mode will break on the first line. So hit <code>ctrl-n</code> until you see that the little indicator on the side has passed the <code>listen</code> part of our script. The server is now actually up and running. Now open <code>localhost:3000</code> in your browser and head back to Vim. The <code>-&gt;</code> indicator is now next to the <code>debugger</code> statement. That&rsquo;s because our browser request hit the http request handler and hence our breakpoint.</p>
+
+<p>Now keep hitting <code>ctrl-n</code> and you&rsquo;ll see the cursor jump around as the code is executed. After a few hits the cursor ends up at <code>foo</code>. Wow. So five is always less then seven, who knew. So there&rsquo;s obviously something wrong with our assumption that we would ever get <code>bar</code> as the response to our request.</p>
+
+<p>If you keep hitting <code>ctrl-n</code> you&rsquo;ll sooner or later consistently end up at the same line. This is when you enter the run or debug loop, I think, which will just hang around and wait for something to happen. You can reload the page to make it jump to the breakpoint again.</p>
+
+<p>You can use <code>ctrl-i</code> to jump <em>in</em> to a function call or <code>ctrl-o</code> to jump <em>out</em> of the current function (ie to after it has returned). I&rsquo;m currently trying to figure out if it&rsquo;s possible to print the value of a variable in the current scope.</p>
+
+<p>Seems like the module is not recently updated or active in anyway. So I guess we shouldn&rsquo;t expect any new features. But for basic debugging and following the code flow it&rsquo;s very handy and cool!</p>
+
+<p>Happy debugging!</p>
+
+      </div>
+    </article>
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

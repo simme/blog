@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+    <article class="post">
+      <span class="date">November 16, 2014</span>
+      <h1>Bye bye Grunt, bye bye Gulp. Hello package.json.</h1>
+      <div class="content">
+         <p>Build systems. The eternal blight of software development. The necessary evil that causes hair loss at a way to young age. Ok, maybe it&rsquo;s not all that bad. But we&rsquo;ve all been bitten by them. The build systems.</p>
+
+<p>Anyway. I&rsquo;ve never liked Grunt. There I said it. The configuration style doesn&rsquo;t fit me. I&rsquo;ve always thought it was too configy and clunky. Then came Gulp that promised a straightforward pipe-based API. It was supposed to be fast. I took to it. I spent some time getting in to Gulp, learning it&rsquo;s API and building out my own build system.</p>
+
+<p>After a while I found this article about how Dan Tello <a href="http://viget.com/extend/gulp-browserify-starter-faq">structures his Gulpfile</a>. I started doing the same. But then, one day, I read a blog post by Keith Cirkel where he was talking about <a href="http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/">why we should stop using Grunt &amp; Gulp</a>. And it struck me:</p>
+
+<blockquote>
+<p>Why am I spending all this time writing code that is not my &ldquo;real&rdquo; code?</p>
+</blockquote>
+
+<p>The post has a perfectly valid point:</p>
+
+<blockquote>
+<p>I realise that someone, somewhere will have a valid use-case for build tools like Grunt and Gulp. I believe, however, that npm can handle 99% of use-cases elegantly, with less code, less maintainence, and less overhead than these tools.</p>
+</blockquote>
+
+<p>I like that. &ldquo;Less code, less maintainence&rdquo;.</p>
+
+<p>So, the gist of it. I like SASS and Browserify. So what do I need? I need to:</p>
+
+<ul>
+<li>Build my application for production.</li>
+<li>Build for development (with automatic rebuilding).</li>
+<li>Testing.</li>
+</ul>
+
+<p>Here&rsquo;s a relevant section from an example <code>package.json</code> file.</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span></span>  <span class="s2">&quot;scripts&quot;</span><span class="err">:</span> <span class="p">{</span>
+    <span class="nt">&quot;test&quot;</span><span class="p">:</span> <span class="s2">&quot;node_modules/.bin/istanbul cover node_modules/.bin/_mocha -- --ui tdd -R spec --inline-diffs&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;build&quot;</span><span class="p">:</span> <span class="s2">&quot;browserify -t [ hbsfy -e hbs ] assets/js/main.js -o build/foo.js | uglifyjs2 build/foo.js &gt; build/bloglovin.min.js&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;watch&quot;</span><span class="p">:</span> <span class="s2">&quot;watchify -d -v -t [ hbsfy -e hbs ] assets/js/main.js -o build/foo.js &amp; sass --watch --sourcemap assets/sass:build&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;start&quot;</span><span class="p">:</span> <span class="s2">&quot;NODE_ENV=development nodemon index.js --port=3000 --admin-port=3001&quot;</span>
+  <span class="p">}</span><span class="err">,</span>
+</code></pre></div>
+
+<p>Now when I run <code>npm run build</code> I know <em>exactly</em> what it does!</p>
+
+<p>Does it look good? No. It doesn&rsquo;t. But it&rsquo;s pragmatic. I know exactly what each of my build commands does. I don&rsquo;t need to go in to detail about it here. But as you can see it does everything I need it to do in four lines of &ldquo;code&rdquo;. If I thought one of the lines was getting out of hand I could pretty easily extract it into it&rsquo;s own Bash script and run that instead.</p>
+
+<p>Just like in March when I realized I had strived too far from <a href="http://iamsim.me/css----complex-style-script/">what makes CSS, CSS</a> and that I wanted to get back to basics. I&rsquo;ve started to feel the same about build systems. Let&rsquo;s keep it simple. Let&rsquo;s focus on the code that makes up our apps! :D</p>
+
+      </div>
+    </article>
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

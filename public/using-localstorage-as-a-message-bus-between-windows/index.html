@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+    <article class="post">
+      <span class="date">March 25, 2014</span>
+      <h1>Using localStorage as a message bus between windows</h1>
+      <div class="content">
+         <p>A while back I implemented a function on <a href="http://www.bloglovin.com">Bloglovin</a> for synchronizing log out across multiple open windows. Ie. if you had multiple tabs open for Bloglovin and signed out in one of them we will sign you out in all of them. This is to avoid weird behavior for AJAX requests in &ldquo;still logged in tabs&rdquo; etc.</p>
+
+<p>I first looked at the HTML5 <code>postMessage</code> API. But to use that you require a reference to the window you want to send a message to. Which you don&rsquo;t have for tabs opened by the user. What I did find out however is that whenever you make a change to <code>localStorage</code> and event is triggered in all open windows on the same domain. The event is <em>not</em> triggered in the window that caused the change.</p>
+
+<p>With this knowledge in mind I went to create a tiny function that on log out writes a special key to localStorage. The value is just a timestamp on when the event happened, this is so that we can disregard it if a certain time as passed since it was written. So the tab that triggers the log out writes this key to localStorage, all the other windows listen for the <code>storage</code> event. When it is triggered we just check the name of the key of the updated row. If it matches our special log out key we trigger a log out in this window too. This works great.</p>
+
+<p>After implementing this a brilliant thought struck me:</p>
+
+<blockquote>
+<p>Shouldn&rsquo;t we be able to use localStorage to synchronize state between tabs in bigger ways then just handling log out?</p>
+</blockquote>
+
+<p>From this thought <a href="https://github.com/simme/browbeat">Browbeat</a> was born. Browbeat is a super simple implementation of the <a href="http://en.wikipedia.org/wiki/Bully_algorithm">Bully algorith</a>. Basically it uses localStorage to initiate an election between open windows. A master window is elected and from there we can do all sorts of cool things.</p>
+
+<p>One use case that I&rsquo;ve been thinking about is to share a socket connection. Instead of opening one WebSocket per window we can have one open connection to the server in the master window. The master window would then relay all incoming messages on the socket to the &ldquo;slaves&rdquo; using localStorage.</p>
+
+<p>Another use case (that don&rsquo;t necessarily requires Browbeat) is state synchronization. Say you have an Ember application running in multiple windows. You update the model in one window and then propagate this change to all other windows. When the user switches tab the update is already there. No confusing data mismatch!</p>
+
+<p>Generally speaking this is probably overkill for the vast majority of web applications. I have no statistics to back this up but the average user probably doesn&rsquo;t open a ton of tabs. Still, it&rsquo;s an interesting thought to play with!</p>
+
+<p>We will hopefully be able to put Browbeat into production pretty soon, I&rsquo;m hoping within a few months.</p>
+
+<p>These are the kinds of ideas that makes me really excited for frontend web technologies at the moment. I feel like we are slowely but surely &ldquo;catching up&rdquo; to native apps. That said I&rsquo;m a firm believer that native will continue to &ldquo;feel better&rdquo; for a long time to come. But all cool things we can do to improve the web experience is awesome!</p>
+
+      </div>
+    </article>
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+    <article class="post">
+      <span class="date">January 5, 2015</span>
+      <h1>Building an app with Ampersand.js</h1>
+      <div class="content">
+         
+
+<p>Throughout 2014 I&rsquo;ve noticed lots of activity in the JavaScript framework space. Tons of interesting things are happening. Ember is working on <a href="http://emberjs.com/blog/2014/12/22/inside-fastboot-the-road-to-server-side-rendering.html">FastBoot</a> which seems super interesting. And also in proximity to Ember is the work on <a href="https://github.com/tildeio/htmlbars">HTMLBars</a>. I&rsquo;ve never spent that much time looking at Angular, and frankly its philosophies don&rsquo;t seem to align with mine. Nonetheless, lots of activity all across the board. There&rsquo;s also React.. and probably a million others that I&rsquo;m currently blanking on.</p>
+
+<p>My latest love affair is <a href="http://ampersandjs.com">Ampersand.js</a> from the team at <a href="https://andyet.com">&amp;yet</a>. Ampersand calls itself:</p>
+
+<blockquote>
+<p>A highly modular, loosely coupled, non-frameworky framework for building advanced JavaScript apps.</p>
+</blockquote>
+
+<p>Lots of frameworks call themselves &ldquo;non-frameworks&rdquo;. I feel like it&rsquo;s warranted in this case though. Ampersand is more of a collection of modules. A collection of modules that work very well together thanks to well defined interfaces and some basic conventions.</p>
+
+<p>Ampersand borrows a lot from Backbone. And even copies some of the code straight up. I was actually never a Backbone fan either. I always felt like there was so much boilerplate code. But the fact that Backbone is still around gives it credibility.</p>
+
+<p>The thing that hooked me on Ampersand was the fact that all modules where CommonJS and <a href="https://www.npmjs.com/browse/keyword/ampersand">existed on npm</a>. No complicated build steps that require complex view pre-compiling and whatnot.</p>
+
+<p>Enough rambling. I&rsquo;m not here to sell you on Ampersand.js. I&rsquo;m here to tell you how I&rsquo;ve ended up using Ampersand (after two weeks of winter holiday hacking) in hopes that it benefits someone else.</p>
+
+<h2 id="the-setup">The Setup</h2>
+
+<p>I&rsquo;ll say it right now. This &ldquo;guide&rdquo;, or whatever it shall be called, will not cater too much to beginners. If you don&rsquo;t know what <a href="http://npmjs.com/">npm</a> or <a href="http://browserify.org">Browserify</a> is or how it all works, you should look that up first! Oh, and one more thing. By the end of this &ldquo;guide&rdquo; you won&rsquo;t have a complete app. This post will just show you how I have come to structure my Ampersand app.</p>
+
+<p>The corner-stones of Ampersand is the <a href="https://www.npmjs.com/package/ampersand-state">state</a>, <a href="https://www.npmjs.com/package/ampersand-model">model</a>, and <a href="https://www.npmjs.com/package/ampersand-view">view</a> modules. There&rsquo;s no &ldquo;core&rdquo; module or anything. If you just want some basic view layer you could pull in just the view module for example.</p>
+
+<p>The <a href="https://www.npmjs.com/package/ampersand">ampersand</a> CLI is not anything I actually use because it doesn&rsquo;t really fit my needs (in terms of folder structure etc).</p>
+
+<p>In a <a href="http://iamsim.me/taking-advantage-of-nodes-require-algorithm-with-browserify/">previous post</a> I talked about how I structure my code. That&rsquo;s the same structure I&rsquo;m using now.</p>
+
+<h2 id="the-core">The &ldquo;Core&rdquo;</h2>
+
+<p>As I mentioned before, Ampersand does not come with any &ldquo;core&rdquo; module. Which isn&rsquo;t really mentioned anywhere in the docs — that confused me for a while. So, we&rsquo;ll need to setup something of our own. First, let&rsquo;s lay out the things we need:</p>
+
+<ol>
+<li>A way to map &ldquo;code&rdquo; to a &ldquo;url&rdquo;. Ie. we need a router and some way to structure that code.</li>
+<li>A way to keep track of global state. This might be a user&rsquo;s session for example. Things that doesn&rsquo;t really fit within a model.</li>
+<li>A way to manage instantiated models. So that we can make sure we&rsquo;re not running around with duplicates.</li>
+<li>Someway to manage the app chrome (navigation bars and what not — stuff that is not part of one special page).</li>
+</ol>
+
+<h3 id="application-state">Application State</h3>
+
+<p>I&rsquo;m gonna be real confusing and start with the second item on the list. <em>Application state</em>. Because the state encapsulates the other stuff. Notice how I used the word state. And how I previously mentioned a module called <code>ampersand-state</code>? Great! Because that&rsquo;s what we&rsquo;re going to use to create our &ldquo;core&rdquo;.</p>
+
+<p>So I&rsquo;m going to start with a folder/file structure that looks like this:</p>
+
+<pre><code>app-root/
+  assets/
+    js/
+      node_modules/
+        application/
+          application.js
+          package.json
+        main.js
+</code></pre>
+
+<p>Let&rsquo;s focus on the application folder for now. We&rsquo;ll circle back to <code>main.js</code> later. If you&rsquo;re curious about this structure it&rsquo;s probably because you didn&rsquo;t go back and read <a href="http://iamsim.me/taking-advantage-of-nodes-require-algorithm-with-browserify/">that post</a> I linked to earlier!</p>
+
+<p>This is how the <code>package.json</code> should look:</p>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span></span><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;main&quot;</span><span class="p">:</span> <span class="s2">&quot;application.js&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>That&rsquo;s only so that Browserify knows where to find the module code and what it is called. Now open up <code>application.js</code> and let&rsquo;s type out the skeleton for our module:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">//</span>
+<span class="c1">// # Application State</span>
+<span class="c1">//</span>
+<span class="c1">// I usually have a comment like this at the top of each file that describes the module.</span>
+<span class="c1">//</span>
+<span class="c1">// These are for hinting. I&#39;m using node: true for convenience, since we&#39;re doing CommonJS style modules.</span>
+<span class="c1">//</span>
+<span class="cm">/* jshint node: true */</span>
+<span class="cm">/* jshint browser: true */</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">AmpersandState</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ampersand-state&#39;</span><span class="p">);</span>
+<span class="c1">// The registry is the module that will hold all of our model instances.</span>
+<span class="kd">var</span> <span class="nx">AmpersandRegistry</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ampersand-registry&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">AmpersandState</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="c1">// For all of the state&#39;s properties we&#39;re going to use the `session` key.</span>
+  <span class="c1">// Session properties are properties that &quot;should not survive a page load&quot;. Which is kind of what we want.</span>
+  <span class="nx">session</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// Our model registry is an object, it is required, and it&#39;s created automatically with this function.</span>
+    <span class="nx">registry</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">AmpersandRegistry</span><span class="p">();</span> <span class="p">}]</span>
+  <span class="p">},</span>
+  
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">initApp</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// This function is called whenever you call &quot;new Application()&quot;.</span>
+    <span class="c1">// So this is where we will bootstrap our app.</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>Let&rsquo;s stop there for now. And skip number three in the list so that we can tackle number 4! If you want you can take a brief pause and read the <a href="http://ampersandjs.com/docs#ampersand-state">docs for ampersand-state</a> to get a better understanding of how it works.</p>
+
+<h3 id="application-chrome">Application Chrome</h3>
+
+<p>Your app probably has a navigation bar. So I&rsquo;m going with that as an example. This navigation bar might contain a search form, maybe a user menu that needs to look different depending on the state of the session (logged in or not). These parts of your app need to stay put when we change the page. And they also require logic that doesn&rsquo;t fit in any page specific code.</p>
+
+<p>Enter the <code>ampersand-view</code>. The purpose of the view is to visualize a state object (or the more common case is a model, which is a &ldquo;subclass&rdquo; of state). This means that a view can bind DOM objects to state properties. Meaning that if the state changes the DOM will automatically update. Which is perfect for our user menu for example.</p>
+
+<p>Let&rsquo;s create a new module. I like to group all views together. So in our <code>node_modules</code> folder, create a new folder called <code>views</code> and in this you create another folder (folders for everyone!!) called <code>app</code>. Lastly in this folder create a <code>package.json</code> similar to the one above and an <code>app.js</code> file for our code.</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// After this I&#39;ll start cutting boilerplate like this from the examples.</span>
+<span class="cm">/* jshint node: true */</span>
+<span class="cm">/* jshint browser: true */</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">AmpersandView</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ampersand-view&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">AmpersandView</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="c1">// We want this view to always just render as soon as we use it.</span>
+  <span class="nx">autoRender</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+  
+  <span class="c1">// This function will be called _after_ the view has been rendered. So here&#39;s our chance</span>
+  <span class="c1">// to set things up if we need to.</span>
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">initView</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">},</span>
+  
+  <span class="c1">// This function should configure anything related to the DOM representation of this view and whatnot.</span>
+  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">},</span>
+  
+  <span class="c1">// This function tells Ampersand _how_ to render this view. In this particular case we just want the view</span>
+  <span class="c1">// to represent everything inside body. So that&#39;s what we will give it.</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">template</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">);</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>Alright, there we have the basics. Let&rsquo;s tie things together before we continue.</p>
+
+<p>Again, take a break and skim through the <a href="http://ampersandjs.com/docs#ampersand-view">ampersand-view docs</a> if you&rsquo;d like. Views are very powerful and it helps to know what they are capable of.</p>
+
+<h3 id="wrapping-up-the-base">Wrapping Up the Base</h3>
+
+<p>Now we need a way to tell the browser to create an instance of our state and one instance of our view and tell them about each other. <code>main.js</code> is the place to do this. So open that file up and type out:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">AppState</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;application&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">AppView</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;views/app&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AppState</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">view</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">AppView</span><span class="p">({</span> <span class="nx">model</span><span class="o">:</span> <span class="nx">state</span> <span class="p">});</span>
+
+<span class="c1">// If you want you can store a reference to the view on window for easy access during debugging etc.</span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="nx">view</span><span class="p">;</span> <span class="c1">// View has a reference to the state so you only need to expose the view.</span>
+</code></pre></div>
+
+<p>Now you can just run <code>browserify assets/js/main.js -o build/bundle.js</code> to build your app. Hopefully that works without throwing any errors! If you haven&rsquo;t already you can throw together a quick HTML page that loads the file and see if it works. Try adding some <code>console.log</code>&rsquo;s to the <code>initialize</code> functions in the code to see if they are beeing run. Or just inspect <code>window.app</code>.</p>
+
+<p>Now ain&rsquo;t that neat?</p>
+
+<h3 id="back-to-the-app-view">Back To the App View</h3>
+
+<p>I won&rsquo;t go in to too much detail about how to bind views and models together the ampersand docs are pretty good at explainging all of that. I just want to circle back quickly to the app view and describe how I&rsquo;ve come to manage things like search forms and such.</p>
+
+<p>The <a href="http://ampersandjs.com/docs#ampersand-view-subviews">docs for ampersand-view</a> mention <code>subviews</code>. A subview is exactly what it sounds, a view that&rsquo;s a child of another view. They are tied together, If a parent is removed the child is removed. Etc.</p>
+
+<p>So in <code>views/app/app.js</code> I might have a subviews definition that looks a little something like exactly this:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">subviews</span><span class="o">:</span> <span class="p">{</span>
+  <span class="nx">search</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">container</span><span class="o">:</span> <span class="s1">&#39;[data-hook=&quot;search-form&quot;]&#39;</span><span class="p">,</span>
+    <span class="nx">constructor</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;views/search-form&#39;</span><span class="p">),</span>
+  <span class="p">},</span>
+  <span class="nx">userMenu</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">container</span><span class="o">:</span> <span class="s1">&#39;[data-hook=&quot;user-menu&quot;]&#39;</span><span class="p">,</span>
+    <span class="c1">// Imagine we have a property on our app-state called `currentUser`. Render the subview when </span>
+    <span class="c1">// that property is truthy.</span>
+    <span class="nx">waitFor</span><span class="o">:</span> <span class="s1">&#39;model.currentUser&#39;</span><span class="p">,</span>
+    <span class="nx">prepareForView</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// `constructor` is basically sugar for this, but we need to pass model as well.</span>
+      <span class="k">return</span> <span class="k">new</span> <span class="nx">UserView</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span> <span class="nx">el</span><span class="p">,</span>
+        <span class="nx">parent</span><span class="o">:</span> <span class="nx">parent</span><span class="p">,</span>
+        <span class="nx">model</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">currentUser</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Now when the app view is rendered all of those subviews are also configured and rendered.</p>
+
+<h3 id="the-registry">The Registry</h3>
+
+<p>As previously noted we want a registry where all the instantiated models are stored. This is so that we can reuse the same models everywhere and take full advantage of bindings (because if you have duplicate models all your views might not update as you expect them).</p>
+
+<p>We&rsquo;ve already created the registry in our application state. Now what we need to do is make it so that every model we create automatically ends up in the registry. Now, I have to admit, I haven&rsquo;t really found a great way to do this without relying on the global app reference. So that&rsquo;s how we will do it.</p>
+
+<p>Many of the ampersand modules can be extended with mixins. I guess you could call them &ldquo;subclasses&rdquo; that extend the prototype chain between the &ldquo;base object&rdquo; and your own special subclass. So this is how my mixin looks:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Probably the only place we can access this global property.</span>
+    <span class="kd">var</span> <span class="nx">registry</span> <span class="o">=</span> <span class="nx">opts</span><span class="p">.</span><span class="nx">registry</span> <span class="o">||</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">App</span> <span class="o">&amp;&amp;</span> <span class="nb">window</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">registry</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">registry</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">registry</span><span class="p">.</span><span class="nx">store</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;destroy&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">registry</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getType</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">getId</span><span class="p">());</span>
+    <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<p>I&rsquo;ve saved that to a module I call <code>base</code> that lives in <code>node_modules/models</code>. When defining a model later I just do:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">AmpersandModel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ampersand-model&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">Base</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;models/base&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">AmpersandModel</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
+  <span class="c1">// Model definition</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p><strong>However</strong> when writing this post I read the <a href="https://www.npmjs.com/package/ampersand-registry">readme</a> for <code>ampersand-registry</code> again and it says:</p>
+
+<blockquote>
+<p>then whenever we&rsquo;re defining models for our application if we&rsquo;re using ampersand-model or it&rsquo;s lower level cousin ampersand-state we can pass it the registry as part of the definition.</p>
+</blockquote>
+
+<p>Which is weird because I remember reading the docs and getting recommended the mixin approach. Which is still there if you look at the <a href="https://github.com/ampersandjs/ampersand-registry#example">github repo</a>. Anyway, the <code>registry</code> property on the model declaration seems like a cleaner approach. So that&rsquo;s what I&rsquo;m going to refactor my models to use!</p>
+
+<h2 id="the-routing-business">The Routing Business</h2>
+
+<p>The remaining thing from our list is the router. Coupling a chunk of code to a URL. If you take a look at the <a href="http://ampersandjs.com/docs#ampersand-router">documentation for <code>ampersand-router</code></a> you will see that it&rsquo;s a pretty simple <code>&quot;route&quot; =&gt; &quot;function&quot;</code> mapping. I don&rsquo;t really like this. Because it requires me to keep all of my page logic in one file. Or at least it requires me to have a lot of boilerplate code that runs my abstracted page logic.</p>
+
+<p>So what I&rsquo;ve come up with is a &ldquo;controller&rdquo; based approach that uses the events from the router to automatically run my page logic for me. This is how my custom router wrapper looks in it&rsquo;s entirety:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">//</span>
+<span class="c1">// # Router</span>
+<span class="c1">//</span>
+<span class="c1">// Setup routes and load controllers.</span>
+<span class="c1">//</span>
+
+<span class="cm">/* jshint node: true */</span>
+<span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">AmpersandRouter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ampersand-router&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">AmpersandRouter</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="c1">//</span>
+  <span class="c1">// ## Controllers</span>
+  <span class="c1">//</span>
+  <span class="c1">// A list of all the available controller constructors.</span>
+  <span class="c1">//</span>
+  <span class="nx">controllers</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">Account</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;controllers/account&#39;</span><span class="p">),</span>
+    <span class="nx">UserProfile</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;controllers/user-profile&#39;</span><span class="p">),</span>
+  <span class="p">},</span>
+
+  <span class="c1">//</span>
+  <span class="c1">// ## Routes</span>
+  <span class="c1">//</span>
+  <span class="c1">// The actual routes mapped to $controller.$action.</span>
+  <span class="c1">//</span>
+  <span class="nx">routes</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s1">&#39;login&#39;</span><span class="o">:</span> <span class="s1">&#39;Account.login&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;users/:id/:context&#39;</span><span class="o">:</span> <span class="s1">&#39;UserProfile.profile&#39;</span>
+  <span class="p">},</span>
+
+  <span class="c1">// --------------------------------------------------------------------------</span>
+
+  <span class="c1">// Extra options, passed to each new controller</span>
+  <span class="nx">controllerOptions</span><span class="o">:</span> <span class="p">{},</span>
+
+  <span class="c1">//</span>
+  <span class="c1">// ## Initialize</span>
+  <span class="c1">//</span>
+  <span class="c1">// Bind route event handler to route function. That&#39;s all.</span>
+  <span class="c1">//</span>
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">initRouter</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">controllerOptions</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">controllerOptions</span> <span class="o">||</span> <span class="p">{};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;route&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">doRoute</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">.</span><span class="nx">routeCallback</span><span class="p">));</span>
+  <span class="p">},</span>
+
+  <span class="c1">//</span>
+  <span class="c1">// ## Do Route</span>
+  <span class="c1">//</span>
+  <span class="c1">// The route was changed. Get the names of the controller and action and</span>
+  <span class="c1">// invoke the controller.</span>
+  <span class="c1">//</span>
+  <span class="nx">doRoute</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">doRoute</span><span class="p">(</span><span class="nx">routeCallback</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">parts</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">parts</span><span class="p">.</span><span class="nx">length</span> <span class="o">!==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Invalid route definition: &#39;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">controller</span> <span class="o">=</span> <span class="k">new</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">controllers</span><span class="p">[</span><span class="nx">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]])(</span><span class="k">this</span><span class="p">.</span><span class="nx">controllerOptions</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">controller</span><span class="p">[</span><span class="nx">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]];</span>
+
+    <span class="nx">args</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">routeCallback</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">action</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">action</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">controller</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// @TODO: Show 404</span>
+    <span class="c1">//else {</span>
+    <span class="c1">//}</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>As you can see it&rsquo;s still a bit of a work in progress. But here&rsquo;s the gist of it:</p>
+
+<ul>
+<li>Define routes as <code>&quot;url&quot; =&gt; &quot;controller.action&quot;</code>.</li>
+<li>Have a map of controllers.</li>
+<li>Bind the <code>route</code> event to our <code>doRoute()</code> function that parses the <code>controller.action</code> string and runs the correct code.</li>
+</ul>
+
+<p>There are two things to note here. I have something called <code>controllerOptions</code> and a <code>routeCallback</code> that we need to pass to our initializer. This is what I use in the app state object to make stuff happen when the route change. So back to our app-state object and its initialize method:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="k">this</span><span class="p">.</span><span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
+  <span class="nx">routeCallback</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">routeChanged</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span>
+  <span class="nx">controllerOptions</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">app</span><span class="o">:</span> <span class="k">this</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>We&rsquo;ve defined a session property (not visible here) called <code>router</code>. We set this property to be an instance of our custom router. We pass it a reference to our route change handler and a reference to ourselves. This is important because this is how each controller gets a reference to the app state object, and in turn the registry etc.</p>
+
+<p>Now, the <code>routeChanged()</code> function. I also have a <code>currentView</code> session property on my app state. Every time a new controller is created in the router, it is called this function as a callback. The controller will return a view that I set as my <code>currentView</code>. The application view will listen for changes to this property and switch out the relevant part of the page for this new view (using the <a href="https://www.npmjs.com/package/ampersand-view-switcher">ampersand-view-switcher</a> module). That way our application chrome stays intact and the only thing that changes is the page specific content.</p>
+
+<p><em>Remember to call <code>this.router.history.start()</code> (see <a href="https://www.npmjs.com/package/ampersand-router#history-start-router-history-start-options-">docs</a> for options) otherwise your router won&rsquo;t do anything. Took me a while to figure out. Also, set <code>silent</code> to <code>false</code> if you want the router to parse the initial page.</em></p>
+
+<h2 id="more-on-controllers">More On Controllers</h2>
+
+<p>It might help if I also explain how the controllers work. All controllers are subclasses of <code>ampersand-state</code>. A typical controller might look like this:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="kd">var</span> <span class="nx">AmpersandState</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ampersand-state&#39;</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">AmpersandState</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="c1">// Store a reference to our app-state object</span>
+  <span class="nx">app</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+  
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span> <span class="nx">initController</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Remember `controllerOptions` from the router? Yeah, those are passed to the controller constructor.</span>
+    <span class="c1">// So now our controller has a reference to the app-state and hence a reference to the registry, which might</span>
+    <span class="c1">// come in handy.</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">app</span><span class="p">;</span>
+  <span class="p">},</span>
+  
+  <span class="c1">// Below are &quot;actions&quot;.</span>
+  
+  <span class="c1">// Let&#39;s pretend this is the UserProfile controller from above, we then want an action called &quot;profile&quot;.</span>
+  <span class="c1">// If you look at the route definition above you see that we have to &quot;arguments&quot; in the path.</span>
+  <span class="c1">// :id and :context. Those are passed here. Furthermore the router will pass any querystring present.</span>
+  <span class="c1">// And finally the callback.</span>
+  <span class="nx">profile</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">userId</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">query</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Do some stuff and create a view.</span>
+    <span class="kd">var</span> <span class="nx">myNewProfileViewObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ProfileView</span><span class="p">({</span> <span class="nx">model</span><span class="o">:</span> <span class="k">this</span> <span class="p">});</span>
+    <span class="c1">// Then pass that view back to the callback.</span>
+    <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">myNewProfileViewObject</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>In essence, each controller is an <code>ampersand-state</code> object. Each controller action creates a view, sets itself as the views model and passes this new view to the callback. Should any error happen this can be passed as the first argument in the callback function. And the application will handle that in a generalized way.</p>
+
+<p>The cool thing about this is that in your controller action you can kick off AJAX requests to fetch new models and do whatever. Your &ldquo;controller view&rdquo; can then have subviews that <code>waitFor</code> properties on the state object. Ie. you could have a property on your controller that gets set <em>after</em> the view has been returned. This way you can show content to the user immediately and Ampersand will then update the views as AJAX requests finishes.</p>
+
+<p>As you&rsquo;ve noticed the controller action is also &ldquo;asynchronous&rdquo;. Which means that the application view can show a spinner until it&rsquo;s recieved the view from the controller. In case you really have to wait for data before showing anything at all.</p>
+
+<h2 id="quick-note-on-bootstrapping">Quick Note On Bootstrapping</h2>
+
+<p>In my current project I&rsquo;m actually rendering the first page in its entirety on the server. Which means that I&rsquo;ll have to have Ampersand pick up where the server left off. I&rsquo;m doing so now by spitting out all my models as raw JSON. Then in the application states initialize method I create models from that raw data. And all my views&rsquo; template functions check for existing DOM nodes and return those if they exist, rather than rendering new ones from templates.</p>
+
+<h2 id="additional-notes-on-templates">Additional Notes On Templates</h2>
+
+<p>When doing client side applications you will also have to render stuff client side. I&rsquo;ve solved this by having a module simply called <code>templates</code> that look like this:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// Browserify can&#39;t resolve variables and stuff, which is why we have to</span>
+<span class="c1">// type out the entire path to the templates here. I&#39;m considering symlinks.</span>
+<span class="c1">// Or maybe putting them in the base node_modules...</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">user</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../../../templates/partials/user.hbs&#39;</span><span class="p">),</span>
+  <span class="nx">loginForm</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../../../templates/partials/login.hbs&#39;</span><span class="p">),</span>
+  <span class="nx">tiledPost</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../../../templates/partials/tiledPost.hbs&#39;</span><span class="p">),</span>
+  <span class="nx">tabbar</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../../../../templates/partials/tabbar.hbs&#39;</span><span class="p">),</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<p>In a view I can then require the templates module and do something like this:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="c1">// a template function in a view</span>
+<span class="nx">template</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Check for existing DOM node</span>
+  <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;[data-post-id=&quot;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39;&quot;]&#39;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">el</span><span class="p">;</span>
+  <span class="p">}</span>
+  
+  <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;templates&#39;</span><span class="p">).</span><span class="nx">tiledPost</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
+<span class="p">},</span>
+</code></pre></div>
+
+<p>And to make this work you also need a transform module in your Browserify call. I&rsquo;m using <a href="https://www.npmjs.com/packages/hbsfy">hbsfy</a>.</p>
+
+<p><code>browserify -t [ hbsfy -e hbs ] assets/js/main.js -o build/bundle.js</code></p>
+
+<p>If you want to add helpers to your Handlebars runtime you can <code>var Handlebars = require('hbsfy/runtime');</code> and <code>registerHelper</code> on that.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I&rsquo;m still very much learning about Ampersand.js and its components. But so far I&rsquo;ve had very fun experimenting with it and I think it&rsquo;s very powerful. Many argue that with more rigid frameworks like Ember you will be able to maintain any Ember app once you&rsquo;ve learned Ember. This will not be the case with Ampersand, since you basically have to glue things together your way (as far as I understand this is mostly the case with Angular too — please correct me if I&rsquo;m wrong). But on the other hand it opens up for great flexibility which has its own set of pros. I&rsquo;m not arguing for or against anything. Ampersand suits me perfectly and I&rsquo;ll continue to use it.</p>
+
+<p>That said. Ampersand is still very young, even though it inherits a lot from Backbone. But it definitely feels solid enough too me. And I know &amp;yet is still putting a lot of work into it. I hope to be able to contribute myself once I&rsquo;ve gotten in to it a bit more! :)</p>
+
+<p>Feedback of any kind is super welcome to either hi@-this-domain- or @simmelj on Twitter! Thanks for reading, hope it helped! :)</p>
+
+      </div>
+    </article>
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

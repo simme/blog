@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+	<meta name="generator" content="Hugo 0.26" />
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+
+    <article class="post-summary">
+      <span class="date">July 19, 2016</span>
+      <h2><a href="https://iamsim.me/the-coordinator-pattern/">The Coordinator Pattern</a></h2>
+      <div class="content">
+         <p>
+            Soroush Khanlou had a very interesting blog post a while back. In it he elaborates on his &ldquo;coordinator pattern&rdquo;. Its a very neat pattern in which you make all of your view controllers &ldquo;flow agnostic&rdquo;. Ie. they know nothing about the view controller hierarchy, when to push another view controller on the navigation stack, when to present a modal etc. All of that responsibility is delegated to a coordinator object.
+         </p>
+        
+         <a class="read-more" href="https://iamsim.me/the-coordinator-pattern/">Read more...</a>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">June 27, 2016</span>
+      <h2><a href="https://iamsim.me/uistackview---uitextview-need-constraints-for-y-position-or-height/">UIStackView &#43; UITextView: Need constraints for Y position or height</a></h2>
+      <div class="content">
+         <p>
+            Just today I had to replace a UILabel with a UITextView. The label was inside of a UIStackView that had its position pinned to the bottom of another view, hence growing upwards. I&rsquo;m doing all of this in Interface Builder btw. Just as I let go of the text view I&rsquo;ve dragged in I see that ominous red circle with an arrow show up. Indicating that there&rsquo;s some problem with my layout.
+         </p>
+        
+         <a class="read-more" href="https://iamsim.me/uistackview---uitextview-need-constraints-for-y-position-or-height/">Read more...</a>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">May 31, 2016</span>
+      <h2><a href="https://iamsim.me/swift-equatable-and-hashable/">Swift Equatable and Hashable</a></h2>
+      <div class="content">
+         <p>
+            Swift provides a protocol that you can conform to to let the world know that your objects or structs can be compared and found equal or not: Equatable.
+There&rsquo;s also a protocol that allows you to use your objects as keys in a dictionary: Hashable.
+In an app I&rsquo;m working on I&rsquo;m making some of the models (structs) conform to these procotols so that I can make diffing and such when refreshing the UI.
+         </p>
+        
+         <a class="read-more" href="https://iamsim.me/swift-equatable-and-hashable/">Read more...</a>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">May 30, 2016</span>
+      <h2><a href="https://iamsim.me/delegate-calls-wrapped-in-computed-properties/">Delegate calls wrapped in computed properties</a></h2>
+      <div class="content">
+         <p>
+            In the app I&rsquo;m currently working I have a view that asks its delegate for the locale to use when rendering it&rsquo;s model object.
+The model has strings for all of the supported locales embeded in it and its just a matter of using the correct one when rendering.
+The view itself can go through a number of different transitions which is why I need to ask the delegate a few times in a few different places for what locale to use.
+         </p>
+        
+         <a class="read-more" href="https://iamsim.me/delegate-calls-wrapped-in-computed-properties/">Read more...</a>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">May 20, 2016</span>
+      <h2><a href="https://iamsim.me/getting-rid-of-typographic-orphans-with-swift/">Getting rid of typographic orphans with Swift</a></h2>
+      <div class="content">
+         <p>
+            I composed this little Swift string extension to get rid of typographic orphans when rendering titles and such:
+ 
+         </p>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">May 19, 2016</span>
+      <h2><a href="https://iamsim.me/uistackview-left-align-without-stretching/">UIStackView: Left align without stretching</a></h2>
+      <div class="content">
+         <p>
+            UIStackView introduced in iOS 9 is awesome. However, as someone coming from the HTML/CSS programming world I sometimes find that it does not really match up with the mental model I have of how it should work.
+There&rsquo;s not any straight forward way of putting a number of absolutely sized items in a stack view and aligning them to either side. You can make them stretch to fill, distribute equally over the entire width of the stack view and you can center them.
+         </p>
+        
+         <a class="read-more" href="https://iamsim.me/uistackview-left-align-without-stretching/">Read more...</a>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">October 9, 2015</span>
+      <h2><a href="https://iamsim.me/live-debugging-node.js-in-vim-update/">Live Debugging Node.js in Vim: update</a></h2>
+      <div class="content">
+         <p>
+            Just wanted to post a super quick update! Since posting my article a few months back there&rsquo;s been some activity in the repository for the node-vim-debugger!
+Looks amazing!
+(If I was the kind of person to take credit for stuff I&rsquo;d like to imagine that I sparked the burst of development creating an issue. Luckliy I&rsquo;m very humble and would never do such a thing. ;))
+         </p>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">September 14, 2015</span>
+      <h2><a href="https://iamsim.me/my-r%C3%A9sum%C3%A9-or-how-i-accidentally-built-a-static-site-generator/">My Résumé: or How I Accidentally Built a Static Site Generator</a></h2>
+      <div class="content">
+         <p>
+            One thing that I did not really realize when I started freelancing was that potentially customers sometimes asks for a résumé. I hadn&rsquo;t had a résumé in over six years. And I probably only wrote one or two before that.
+So last week when I was approached by a company, that I really wanted to work with, asked for my résumé I sat down to write one. I opened up a new Google Docs file and started writing.
+         </p>
+        
+         <a class="read-more" href="https://iamsim.me/my-r%C3%A9sum%C3%A9-or-how-i-accidentally-built-a-static-site-generator/">Read more...</a>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">August 16, 2015</span>
+      <h2><a href="https://iamsim.me/reactive-cocoa/">Reactive Cocoa</a></h2>
+      <div class="content">
+         <p>
+            Here&rsquo;s a nice article that explains Reactive Cocoa in a very succint way. I don&rsquo;t think I&rsquo;ll ever really get into this style of programming (mostly because I don&rsquo;t feel super comfortable basing an app entirely on third party frameworks). But I find it really fascinating and cool!
+         </p>
+        
+      </div>
+    </article>
+    
+    <article class="post-summary">
+      <span class="date">August 16, 2015</span>
+      <h2><a href="https://iamsim.me/nodes-require-and-browserify-take-2/">Node&#39;s Require and Browserify: Take 2</a></h2>
+      <div class="content">
+         <p>
+            A while back I wrote about taking advantage of Node&rsquo;s require algorithm with Browserify. While I liked the concept of doing that I never really liked how it made things look file-wise.
+Well. Turns out you don&rsquo;t need to wrap your little module in a directory or give it a package.json!
+Say you have a module called&hellip; let&rsquo;s say do-some-math that exports some fancy math functions that are unique do your project.
+         </p>
+        
+         <a class="read-more" href="https://iamsim.me/nodes-require-and-browserify-take-2/">Read more...</a>
+        
+      </div>
+    </article>
+    
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

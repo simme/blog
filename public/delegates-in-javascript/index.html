@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+    <article class="post">
+      <span class="date">August 10, 2014</span>
+      <h1>Delegates in JavaScript</h1>
+      <div class="content">
+         <p>If you&rsquo;ve ever done any iOS or Mac development you&rsquo;re probably pretty familiar with the <a href="http://en.wikipedia.org/wiki/Delegation_pattern">delegation pattern</a>. If you&rsquo;ve never set foot in Cocoa land you&rsquo;ve probably <em>never</em> heard about this (or at least not used it). Basically delegation is a way of specializing an object and removing certain &ldquo;business logic&rdquo; from it. For example, take the <code>UITableView</code> on iOS. That&rsquo;s the class responsible for displaying all those lists you see on the iPhone. It has a very &ldquo;simple&rdquo; mission: render a list of item (and manage scrolling, view reuse etc). An instance of <code>UITableView</code> knows nothing about the data it displays, or how it should be displayed. This is all up to the <code>dataSource</code> and <code>delegate</code> to figure out. Ie. the table view instance will <em>query</em> the <code>dataSource</code> for data and views to render.</p>
+
+<p>The <a href="https://developer.apple.com/library/ios/documentation/uikit/reference/UITableViewDataSource_Protocol/Reference/Reference.html">data source protocol</a> defines a number of methods that a table view data source must or can implement. So, the table view asks the data source &ldquo;Hey, how many rows should I draw?&rdquo;, &ldquo;How high are the cells for each row?&rdquo; and &ldquo;Could I please have the cell for row 5 in section 2&rdquo;. Et cetera. (Nitpickers need not point out the fact that I took the data source instead of the actual delegate as an example. IMO the data source <em>is</em> a delegate, just another kind. Also made for a better example.)</p>
+
+<p>This makes for very clean separation of responsibilities. The table view don&rsquo;t have to know anything about where the data comes from. Which makes it very easy to reuse the table view itself. Say you&rsquo;re building a Twitter client. There are many places you would show a timline, profile, main feed, list. All of them look the same, but the data comes from different places.</p>
+
+<p>Anyway, lately I&rsquo;ve been experimenting with this concept in JavaScript. I guess that basically it&rsquo;s just another way of doing &ldquo;model -&gt; view&rdquo;. But say you wanted to build a generic list view for the web, a list view that could optimize for scrolling performance and usability, while not having to care about data at all. And then you modularize that and then all of a sudden you have a component you can reuse basically anywhere as long as you slap some extra methods on your model, or view model, or whatever, and you&rsquo;re done.</p>
+
+<p>Kind of a rambly and weird post that didn&rsquo;t really go anywhere. I just feel like delegation could be a handy pattern that should be used more on the web. Instead of having a jQuery-plugin that just takes a <code>ul</code>-element already in the DOM you could have a component that acts upon a model.</p>
+
+      </div>
+    </article>
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

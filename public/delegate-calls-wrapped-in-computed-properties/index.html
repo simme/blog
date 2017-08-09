@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+    <article class="post">
+      <span class="date">May 30, 2016</span>
+      <h1>Delegate calls wrapped in computed properties</h1>
+      <div class="content">
+         <p>In the app I&rsquo;m currently working I have a view that asks its delegate for the locale to use when rendering it&rsquo;s model object.</p>
+
+<p>The model has strings for all of the supported locales embeded in it and its just a matter of using the correct one when rendering.</p>
+
+<p>The view itself can go through a number of different transitions which is why I need to ask the delegate a few times in a few different places for what locale to use. And I also need to provide a default value in all of those places.</p>
+
+<p>Of couse you could have a property on your view that you just set whenever the view is initialized or whenever you are given a delegate. But this might cause problems because the delegate is not set when <code>awakeFromNib</code> is called or what ever.</p>
+
+<p>So I came up with this pattern:</p>
+<div class="highlight"><pre><code class="language-swift" data-lang="swift"><span></span><span class="kd">var</span> <span class="nv">locale</span><span class="p">:</span> <span class="nb">String</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">delegate</span><span class="p">?.</span><span class="n">mySpecialViewLocale</span><span class="p">(</span><span class="kc">self</span><span class="p">)</span> <span class="p">??</span> <span class="s">&quot;en&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Which works great. It removes the optional from all of the other places in my view and it also allows me to set a default value in one place.</p>
+
+<p>I elaborated a bit more on this and came up with the following gist (might not show up in RSS readers):</p>
+
+<script src="https://gist.github.com/simme/68e8b3c5ca47e5ce42765baa1336543c.js"></script>
+
+<p>Basically it adds a caching mechanism to the computed property. If you know that your delegate won&rsquo;t change that value during the lifetime of the object doing the delegation this might be a fine solution if you expect the delegate call to be heavy or if you&rsquo;re calling it <em>a lot</em>. But be careful about caching issues. The delegate is probably the one who <em>should</em> do the caching&hellip;</p>
+
+      </div>
+    </article>
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

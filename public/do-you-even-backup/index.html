@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+    <article class="post">
+      <span class="date">January 22, 2014</span>
+      <h1>Do You Even Backup?</h1>
+      <div class="content">
+         
+
+<p>Having a solid backup solution is really important to me since I have tons of code that I don&rsquo;t, but really should, push to GitHub or similar. I have thousands of photos that I really don&rsquo;t want to lose. Read on to see what makes me sleep at night!</p>
+
+<h2 id="clone-it">Clone It</h2>
+
+<p>I use <a href="http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html">SuperDuper</a> from <em>ShirtPocket</em> to make a bootable backup of my MacBook Pro&rsquo;s harddrive. I have it connected to my monitor and SuperDuper is configured to automatically make a <em>smart copy</em> (only backups new/changed files) everytime I connect the hardrive — ie. every time I connect my laptop to my monitor. And since the USB hub is <em>on</em> my monitor that also means everytime I turn the monitor on (every morning).</p>
+
+<p>Once the backup is complete SuperDuper ejects the drive and quits itself. I don&rsquo;t have to do anything.</p>
+
+<p>The fantastic thing about a bootable backup is that should my MacBook&rsquo;s internal drive die I&rsquo;ll experience no downtime since I can just boot from my backup. I could even restore to a new drive while continuing to work.</p>
+
+<p>And it the horrific case of a complete computer emergency I could even boot from the external drive connected to my girlfriends MacBook Air.</p>
+
+<p>If you&rsquo;re wondering what drive I&rsquo;m currently using it&rsquo;s a <strong>WesternDigital Elements</strong> 500Gb external USB drive. Requires no additional power supply and fits neatly on the stand of my monitor. Only annoying thing is the blue led light, which I covered with a piece of black tape.</p>
+
+<h2 id="hfs-and-you">HFS+ and You</h2>
+
+<p>If you&rsquo;ve listend to <em>any</em> podcast featuring <a href="http://hypercritical.com/">John Siracusa</a> you&rsquo;ve undoubtedly <a href="http://atp.fm/episodes/40-the-compliance-shark">heard</a> <a href="http://www.imore.com/debug-24-jalkut-nielsen-siracusa-and-future-os-x">him</a> <a href="http://5by5.tv/hypercritical/56">whine</a> about <a href="http://en.wikipedia.org/wiki/Hierarchical_File_System">HFS+</a>. The issue is that HFS+ is not awesome at maintaining and ensuring data integrity. It&rsquo;s easily corrupted etc. I won&rsquo;t talk about that here because I&rsquo;m no expert. All you need to know is that I run <strong>Disk Utility</strong> (It&rsquo;s an app on your Mac) fairly regurlarly to repair and verify my disk. Because if you have errors in your computer&rsquo;s filesystem they will propagate to your SuperDuper clone and it won&rsquo;t matter that you have a backup.</p>
+
+<p>It&rsquo;s not in anyway a gurantee that it&rsquo;ll keep your data safe. But at least you&rsquo;ll get an early warning when you start getting errors that can&rsquo;t be repaired.</p>
+
+<h2 id="always-have-a-backup-backup">Always Have a Backup Backup</h2>
+
+<p>SuperDuper great and all. But I&rsquo;m not naive enough to trust all my data to a tiny pocket drive. That&rsquo;s where <a href="http://www.backblaze.com">Backblaze</a> comes in. Backblaze is an online backup service that stores all your stuff for $5 per month.</p>
+
+<p>For one it&rsquo;s offsite so if my house burns down or theives break in I won&rsquo;t lose <em>that</em> backup. They have strong encryption which is nice and lastly it&rsquo;s continious so it&rsquo;s not reliant on a disk being plugged in. Altough it requires an internet connection of course.</p>
+
+      </div>
+    </article>
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="https://iamsim.me/css/master.css" rel="stylesheet">
+      <link href="https://iamsim.me/index.xml" rel="alternate" type="application/rss+xml" title="" />
+      <link href="https://iamsim.me/index.xml" rel="feed" type="application/rss+xml" title="" />
+      <link href="" rel="alternate" type="application/json" title="" />
+   </head>
+   <body>
+      <header class="page-header">
+         
+            <a href="https://iamsim.me/" class="page-header-logo">I Am Simme</a>
+         
+         <p>
+            A blog about programming, photography and other things I like and don't.
+         </p>
+      </header>
+
+      <section class="main">
+
+
+    <article class="post">
+      <span class="date">May 8, 2015</span>
+      <h1>iOS Storyboard Tips &amp; Tricks</h1>
+      <div class="content">
+         
+
+<p>I&rsquo;ve been spending some time diving into iOS development for reals during my spare time the last couple of months. In this time I&rsquo;ve come to learn a lot of things about storyboards, other than that they are pretty awesome.</p>
+
+<p>Here are two things in particular.</p>
+
+<h2 id="table-view-data-sources-and-delegates">Table View Data Sources and Delegates</h2>
+
+<p>In the very <a href="http://www.objc.io/issue-1/index.html">first issue</a> of <a href="http://objc.io">objc.io</a> they discuss how to make your <code>UITableViewControllers</code> <a href="http://www.objc.io/issue-1/lighter-view-controllers.html">lighter</a> by moving data sources and delegates to separate objects. Turns out you can achieve this with storyboards — without the need to create a custom table view controller subclass!</p>
+
+<ol>
+<li>In Interface Builder search for <code>Object</code> in the <em>Object Library</em> (lower right).</li>
+<li>Hit <code>Return</code> or drag the <code>Object</code> to your table view.</li>
+<li>If it&rsquo;s not automatically selected, seletect the <code>Object</code> and open up the <em>Identity Inspector</em>.</li>
+<li>In the section <code>Custom Class</code> enter the name of your custom data source class.</li>
+<li>Control drag from the table view to your data source object, select <code>data source</code> from the popup menu.</li>
+<li>You&rsquo;re done!</li>
+</ol>
+
+<p>By hooking things up this way I&rsquo;ve come along way without creating a ton of custom controllers just to create my data sources.</p>
+
+<h2 id="the-exit-unwind-segue">The Exit/Unwind Segue</h2>
+
+<p>You probably know this already if you&rsquo;ve ever done anything with storyboards, but it was news to me.</p>
+
+<ol>
+<li>Implement a method in a view controller (any view controller — I think) with the following signature <code>func myUnwindSegue(segue: UIStoryboardSegue)</code>.</li>
+<li>Control drag from any button to the <code>Exit</code> icon on your <em>current</em> view and select the method you want to &ldquo;unwind&rdquo; to.</li>
+</ol>
+
+<p>Whenever your button is tapped the current view controller will be dimissed if it was presented modally or popped from the navigation stack if it&rsquo;s contained in a navigation controller. Basically it&rsquo;ll do the right thing to go back to the view controller implementing the method. If the destination view controller cannot be unwound to, because it&rsquo;s not in the navigation stack or something, the button will do nothing (I think).</p>
+
+<p>Now, any function with the above signature will show up in the list of available ones. So first of all, if you have lots of view controllers you want to unwind to you probably want to name your methods in a unique way, and not just <code>back</code>. Maybe <code>returnToListOfThings</code> or <code>saveThisThing</code>.</p>
+
+      </div>
+    </article>
+      </section>
+
+      <footer class="page-footer">
+         <p>
+            All content and code on this site is provided under the MIT license.
+         </p>
+         <nav>
+            <ol>
+               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a href="https://github.com/simme">GitHub</a></li>
+            </ol>
+         </nav>
+      </footer>
+   </body>
+</html>
+

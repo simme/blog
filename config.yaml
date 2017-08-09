@@ -11,4 +11,19 @@ metaFataFormat: "yaml"
 paginate: 10
 paginatePath: "page"
 titlecaseStyle: "AP"
+copyright: "This work is licensed under the MIT license."
+author:
+   name: "Simon Ljungberg"
+rssLimit: 20
+outputFormats:
+   jsonfeed:
+      mediaType: "application/json"
+      baseName: "feed"
+      isPlaintext: true
+outputs:
+   home:
+      - "rss"
+      - "html"
+      - "jsonfeed"
+canonifyurls: true
 ...
