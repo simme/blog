@@ -1,0 +1,16 @@
+{{ partial "header.html"}}
+{{ range sort .Paginator.Pages }}
+    <article class="post-summary">
+      <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
+      <h2><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .Draft }} ::Draft{{ end }}</h2>
+      <div class="content">
+         <p>
+            {{ .Summary | plainify | safeHTML }}
+         </p>
+        {{ if .Truncated }}
+         <a class="read-more" href="{{ .Permalink }}">Read more...</a>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+{{ partial "footer.html"}}

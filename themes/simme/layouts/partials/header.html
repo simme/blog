@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>I Am Simme</title>
+      <link href="https://fonts.googleapis.com/css?family=Oswald:600&amp;subset=latin-ext" rel="stylesheet">
+      <link href="/css/master.css" rel="stylesheet">
+   </head>
+   <body>
+      <header class="page-header">
+         {{ if .IsHome }}
+            <h1 class="page-header-logo">I Am Simme</h1>
+         {{ else }}
+            <a href="/" class="page-header-logo">I Am Simme</a>
+         {{ end }}
+         <p>
+            A blog about programming, photography and other things I like (and maybe don't).
+         </p>
+      </header>
+
+      <section class="main">
+

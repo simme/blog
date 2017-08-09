@@ -1,0 +1,14 @@
+---
+baseURL: "https://iamsim.me/"
+languageCode: "en-us"
+title: "I Am Simme"
+theme: "simme"
+pygmentsuseclasses: true
+PygmentsCodeFences: true
+permalinks:
+      post: "/:title"
+metaFataFormat: "yaml"
+paginate: 10
+paginatePath: "page"
+titlecaseStyle: "AP"
+...
