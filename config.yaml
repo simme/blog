@@ -1,7 +1,7 @@
 ---
 baseURL: "https://www.iamsim.me/"
 languageCode: "en-us"
-title: "I Am Simme"
+title: "I am Simme"
 theme: "simme"
 pygmentsuseclasses: true
 PygmentsCodeFences: true
