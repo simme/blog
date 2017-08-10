@@ -229,3 +229,34 @@ a.read-more {
       }
    }
 }
+
+/* Pagination */
+.pagination {
+   max-width: $max-width-text;
+   text-align: center;
+   font: 400 1.6rem $body-font;
+   margin: 5rem auto;
+   color: $color4;
+}
+
+   .post-list-pagination {
+      display: flex;
+      justify-content: space-between;
+
+      a {
+         color: $colorD;
+         text-decoration: none;
+
+         &:focus, &:hover {
+            color: $colorF;
+         }
+      }
+   }
+
+   .pagination-newer:before {
+      content: "‹";
+   }
+
+   .pagination-older:after {
+      content: "›";
+   }

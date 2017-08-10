@@ -1,5 +1,6 @@
 {{ partial "header.html"}}
-{{ range sort .Paginator.Pages }}
+{{ $paginator := .Paginate (where .Site.Pages "Type" "post" )}}
+{{ range sort $paginator.Pages }}
     <article class="post-summary">
       <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .Draft }} ::Draft{{ end }}</h2>
@@ -13,4 +14,23 @@
       </div>
     </article>
     {{ end }}
+   <div class="pagination">
+     <nav role="pagination" class="post-list-pagination">
+         {{ if $paginator.HasPrev }}
+         <a href="{{$paginator.Prev.URL}}" class="pagination-newer">
+           Newer
+         </a>
+         {{ else }}
+            <div class="pagination-dummy"></div>
+         {{ end }}
+       <div class="pagination-count">Page {{$paginator.PageNumber}} of {{$paginator.TotalPages}}</div>
+       {{ if $paginator.HasNext }}
+         <a href="{{$paginator.Next.URL}}" class="pagination-older">
+           Older
+         </a>
+         {{ else }}
+            <div class="pagination-dummy"></div>
+       {{ end }}
+     </nav>
+   </div>
 {{ partial "footer.html"}}

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
     Name:       Base16 Eighties Dark
     Author:     Chris Kempson (http://chriskempson.com)
@@ -437,5 +438,28 @@ a.read-more {
     text-decoration: none; }
     .page-footer a:focus, .page-footer a:hover {
       color: #d27b53; }
+
+/* Pagination */
+.pagination {
+  max-width: 64rem;
+  text-align: center;
+  font: 400 1.6rem -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
+  margin: 5rem auto;
+  color: #a09f93; }
+
+.post-list-pagination {
+  display: flex;
+  justify-content: space-between; }
+  .post-list-pagination a {
+    color: #6699cc;
+    text-decoration: none; }
+    .post-list-pagination a:focus, .post-list-pagination a:hover {
+      color: #d27b53; }
+
+.pagination-newer:before {
+  content: "‹"; }
+
+.pagination-older:after {
+  content: "›"; }
 
 /*# sourceMappingURL=master.css.map */
