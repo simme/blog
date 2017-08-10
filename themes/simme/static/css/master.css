@@ -277,6 +277,10 @@ html {
 html {
   font-size: 62.5%; }
 
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 50%; } }
+
 body {
   background: #2d2d2d; }
 
@@ -310,7 +314,7 @@ body {
       .page-header nav a:focus, .page-header nav a:hover {
         color: #d27b53; }
   .page-header p {
-    font: 400 2rem/1 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
+    font: 400 2rem/1.5 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
     text-decoration: none;
     color: #6699cc;
     opacity: 0.7; }
