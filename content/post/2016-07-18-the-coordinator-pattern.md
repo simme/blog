@@ -143,7 +143,7 @@ The default implementation extension provides convenience methods for starting a
 
 So imagine you have a view controller showing a contact. The view is displaying an edit button. The view controller is managed by a `ContactsBrowsingCoordinator`. The user taps that edit button which triggers a delegate call: `delegate?.contactDetailViewController(contactDetailViewController: ContactDetailViewController, wantsToEditContact contact: Contact)`
 
-The delegate of the view controller is the `ContactsBrowsingCoordinator`. When the `wantsToEdit` method is called it spins off a `EditContactCoordinator` doing something like this:
+The delegate of the view controller is the `ContactsBrowsingCoordinator`. When the `wantsToEdit` method is called it spins off an `EditContactCoordinator` doing something like this:
 
 ```swift
 func contactDetailViewController(contactDetailViewController: ContactDetailViewController, wantsToEditContact contact: Contact) {
