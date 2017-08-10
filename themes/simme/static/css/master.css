@@ -427,7 +427,7 @@ a.read-more {
   padding: 4rem 2rem 6rem;
   margin: auto;
   color: #a09f93;
-  font: 400 1.6rem -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif; }
+  font: 400 1.6rem/1.5 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif; }
   .page-footer nav ol {
     display: flex;
     list-style: none; }
