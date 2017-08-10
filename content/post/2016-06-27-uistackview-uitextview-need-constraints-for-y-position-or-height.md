@@ -1,5 +1,5 @@
 ---
-title: "UIStackView + UITextView: Need constraints for Y position or height"
+title: "UIStackView with UITextView: Need constraints for Y position or height"
 slug: uistackview-uitextview-need-constraints-for-y-position-or-height
 publishDate: 2016-06-27T19:00:07.000Z
 date:   2016-06-27T19:00:07.000Z
