@@ -296,22 +296,6 @@ body {
   padding: 0;
   margin: 0 auto 8rem;
   max-width: 64rem; }
-  .page-header nav {
-    margin-bottom: 6rem; }
-    .page-header nav ol {
-      padding: 0;
-      margin: 0;
-      display: flex;
-      list-style: none; }
-      .page-header nav ol li {
-        margin-right: 4rem; }
-    .page-header nav a {
-      font: 400 3rem/1 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
-      text-decoration: none;
-      color: #6699cc;
-      text-decoration: none; }
-      .page-header nav a:focus, .page-header nav a:hover {
-        color: #d27b53; }
   .page-header p {
     font: 400 2rem/1.5 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
     text-decoration: none;
@@ -320,17 +304,18 @@ body {
     margin: 0; }
 
 .page-header-logo {
-  font: 600 10rem/1 "Oswald", sans-serif;
+  font: 600 10.1rem/1 "Oswald", sans-serif;
   margin: 5rem 0 1rem;
   color: #99cc99;
   padding: 0;
-  text-decoration: none; }
+  text-decoration: none;
+  display: block; }
 
 /* Posts */
 .post h1 {
-  font: 600 5.2rem/1 "Oswald", sans-serif;
+  font: 600 4.5rem/1 "Oswald", sans-serif;
   color: #f2777a;
-  margin: 0 auto 3rem auto;
+  margin: 0 auto 2rem auto;
   padding: 0;
   max-width: 64rem; }
 
@@ -338,7 +323,7 @@ body {
   margin: 0 auto 10rem;
   max-width: 64rem; }
   .post-summary h2 {
-    font: 600 5.2rem/1 "Oswald", sans-serif;
+    font: 600 4.5rem/1 "Oswald", sans-serif;
     color: #f2777a;
     margin: 0 0 2rem 0;
     padding: 0; }
@@ -350,31 +335,35 @@ body {
 
 .date {
   color: #a09f93;
-  font: 400 1.4rem/1.4 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
+  font: 400 1.3rem/1.4 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
   display: block;
   max-width: 64rem;
   margin: auto auto 1.2rem; }
 
 .post p, .post-summary p {
   color: #d3d0c8;
-  font: 400 1.8rem/1.5 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
+  font: 400 2rem/1.5 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
   padding: 0;
   margin: 0 auto 1.2rem;
   max-width: 64rem; }
 
-.content h2 {
-  font: 600 4rem/1 "Oswald", sans-serif;
+.content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
   color: #f99157;
   margin: 4rem auto 1.5rem auto;
   padding: 0;
   max-width: 64rem; }
 
+.content h2 {
+  font: 600 4.5rem/1 "Oswald", sans-serif; }
+
 .content h3 {
-  font: 600 3rem/1 "Oswald", sans-serif;
-  color: #f99157;
-  margin: 4rem auto 1.5rem auto;
-  padding: 0;
-  max-width: 64rem; }
+  font: 600 3.6rem/1 "Oswald", sans-serif; }
+
+.content h4 {
+  font: 600 3.15rem/1 "Oswald", sans-serif; }
+
+.content h5 {
+  font: 600 2.7rem/1 "Oswald", sans-serif; }
 
 .content a {
   color: #6699cc;
@@ -388,12 +377,13 @@ body {
   display: block;
   overflow-x: scroll;
   border-radius: 4;
-  margin: 4rem 0; }
+  margin: 4rem 0;
+  font-size: 62.5%; }
   .content pre code {
-    font: 400 1.2rem/1.3 'SFMono', 'Source Sans Pro', 'Andale', 'Monavo', monospace; }
+    font: 400 1.2rem/1.3 'SFMono', 'Source Sans Pro', 'Andale Mono', 'Monaco', monospace; }
 
 .content code {
-  font: 400 1.8rem/1.3 'SFMono', 'Source Sans Pro', 'Andale', 'Monavo', monospace;
+  font: 400 2rem/1.3 "SFMono", "Source Sans Pro", "Andale Mono", "Monaco", monospace;
   color: #e8e6df;
   background: #393939;
   border-radius: 4px;
@@ -402,7 +392,7 @@ body {
 
 .content ol, .content ul {
   color: #d3d0c8;
-  font: 400 1.8rem/1.5 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
+  font: 400 2rem/1.5 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
   padding: 1.2rem 0 1.2rem 4rem;
   margin: auto;
   list-style-position: outside;
@@ -448,7 +438,7 @@ a.read-more {
 .pagination {
   max-width: 64rem;
   text-align: center;
-  font: 400 1.6rem -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
+  font: 400 2rem/1.5 -apple-system, BlinkMacSystemFont, "Helvetica", "Segoe", sans-serif;
   margin: 5rem auto;
   color: #a09f93; }
 
