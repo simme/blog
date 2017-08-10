@@ -142,12 +142,12 @@ body {
       margin: 4rem 0;
       font-size: 62.5%;
       code {
-         font: 400 1.2rem/1.3 'SFMono', 'Source Sans Pro', 'Andale Mono', 'Monaco', monospace;
+         font: 400 1.2rem/1.3 'SFMono', 'Source Code Pro', 'Andale Mono', 'Monaco', monospace;
       }
    }
 
    code {
-      font: 400 #{$font-size-2}/1.3 'SFMono', 'Source Sans Pro', 'Andale Mono', 'Monaco', monospace;
+      font: 400 #{$font-size-2}/1.3 'SFMono', 'Source Code Pro', 'Andale Mono', 'Monaco', monospace;
       color: $color6;
       background: $color1;
       border-radius: 4px;
