@@ -3,18 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-   "scripts": {
-      "sass-watch": "node-sass --watch --recursive --output themes/simme/static/css --source-map true --source-map-contents themes/simme/sass",
-      "sass-build": "node-sass --output themes/simme/static/css --output-style compressed themes/simme/sass",
-      "precache": "sw-precache --root=public --sw-file-path=public/service-worker.js",
-      "build-hugo": "hugo",
-      "build": "npm run sass-build && npm run build-hugo && npm run precache"
-   },
-   "dependencies": {
-      "concurrently": "^3.5.0",
-      "node-sass": "^4.5.3",
-      "sw-precache": "^5.2.0"
-   }
+  "scripts": {
+    "sass-watch": "node-sass --watch --recursive --output themes/simme/static/css --source-map true --source-map-contents themes/simme/sass",
+    "sass-build": "node-sass --output themes/simme/static/css --output-style compressed themes/simme/sass",
+    "precache": "sw-precache --root=public --sw-file-path=public/service-worker.js",
+    "build-hugo": "hugo",
+    "build": "npm run sass-build && npm run build-hugo && npm run precache"
+  },
+  "dependencies": {
+    "concurrently": "^3.5.0",
+    "node-sass": "^4.5.3",
+    "sw-precache": "^5.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simme/blog.git"
