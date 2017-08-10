@@ -4,7 +4,7 @@
       "sass-build": "node-sass --output static/css --output-style compressed sass",
       "precache": "sw-precache --root=public --sw-file-path=public/service-worker.js",
       "build-hugo": "cd ../.. && hugo",
-      "build": "npm run sass-build && npm run build-hugo"
+      "build": "npm run sass-build && npm run build-hugo && npm run precache"
    },
    "dependencies": {
       "concurrently": "^3.5.0",
