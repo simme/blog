@@ -24,8 +24,26 @@ var locale: String {
 
 Which works great. It removes the optional from all of the other places in my view and it also allows me to set a default value in one place.
 
-I elaborated a bit more on this and came up with the following gist (might not show up in RSS readers):
+I elaborated a bit more on this and came up with the following:
 
-<script src="https://gist.github.com/simme/68e8b3c5ca47e5ce42765baa1336543c.js"></script>
+```swift
+protocol MySpecialViewDelegate: class {
+  func mySpecialViewStringForView(view: MySpecialView) -> String
+}
+
+class MySpecialView: UIView {
+
+  weak var delegate: MySpecialViewDelegate? = nil
+
+  private var cachedString: String? = nil
+
+  private var specialString: String {
+    guard let cached = cachedString else { return cachedString }
+    guard let string = delegate?.mySpecialViewStringForView(self) else { return "some default value" }
+    cachedString = string
+    return cachedString
+  }
+}
+```
 
 Basically it adds a caching mechanism to the computed property. If you know that your delegate won't change that value during the lifetime of the object doing the delegation this might be a fine solution if you expect the delegate call to be heavy or if you're calling it *a lot*. But be careful about caching issues. The delegate is probably the one who _should_ do the caching...

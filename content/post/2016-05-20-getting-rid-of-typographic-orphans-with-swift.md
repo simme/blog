@@ -8,4 +8,32 @@ tags: iOS
 
 I composed this little Swift string extension to get rid of typographic orphans when rendering titles and such:
 
-<script src="https://gist.github.com/simme/2fdb2f6b44c48ba3c317f8d66036ca72.js"></script>
+```swift
+//
+//  String+Typography.swift
+//  FilibabaKit
+//
+//  Created by Simon Ljungberg on 09/05/16.
+//  Copyright © 2016 Filibaba. All rights reserved.
+//
+import Foundation
+
+extension String {
+
+    /**
+     String Without Orphan
+    
+     - Returns: The string with the last space replaced with a non-breaking space to avoid orphans.
+    */
+    var stringWithoutOrphan: String? {
+        get {
+            let space = NSCharacterSet(charactersInString: " ")
+            if let lastSpace = self.rangeOfCharacterFromSet(space, options: .BackwardsSearch, range: nil) {
+                return self.stringByReplacingCharactersInRange(lastSpace, withString: "\u{00a0}")
+            }
+            return self
+        }
+    }
+
+}
+```

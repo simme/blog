@@ -18,7 +18,7 @@ For each arranged subview that you want to keep to a fixed size call `.setConten
 
 Then create a new invisible view that we'll use as a "filler" for the rest of the space.
 
-```
+```swift
 let stretchingView = UIView()
 stretchingView.setContentHuggingPriority(1, forAxis: .Horizontal)
 stretchingView.backgroundColor = .clearColor()

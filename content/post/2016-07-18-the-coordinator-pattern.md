@@ -32,7 +32,108 @@ After having each of the flows down I started thinking about what a coordinator 
 
 I came up with this protocol (gist, might not show up in RSS readers):
 
-<script src="https://gist.github.com/simme/ea0918d534f13ace3445e84ec043ed99.js"></script>
+```swift
+//
+//  Coordinator.swift
+//
+//  License: MIT
+//  Author: Simon Ljungberg, Filibaba
+//
+import UIKit
+
+/// A callack function used by coordinators to signal events.
+typealias CoordinatorCallback = (Coordinator) -> Void
+
+/**
+ A coordinator is an object that manages the flow and life cycle of view controllers in an application.
+ See: http://khanlou.com/2015/10/coordinators-redux/ for more.
+ */
+protocol Coordinator: NSObjectProtocol {
+   /// A string that identifies this coordinator.
+   var identifier: String { get set }
+
+   /// Some object holding information about the application context. Database references, user settings etc.
+   var appContext: AppContext? { get }
+
+   /// The storyboard we create new view controllers from. Not using segues, only storyboard identifiers.
+   var storyboard: UIStoryboard { get }
+
+   /// The root view controller for a coordinator.
+   var rootViewController: UIViewController { get }
+
+   /// We identify each coordinator with a string, for debugging reasons and stuff.
+   var childCoordinators: [String: NSObject] { get set }
+
+   /// Force a uniform initializer on our implementors.
+   init(appContext: AppContext?, storyboard: UIStoryboard, rootViewController: UIViewController)
+
+   /// Tells the coordinator to create its initial view controller and take over the user flow.
+   func start(withCallback completion: CoordinatorCallback?)
+
+   /// Tells the coordinator that it is done and that it should rewind the view controller state to where it was before `start` was called.
+   func stop(withCallback completion: CoordinatorCallback?)
+
+   /**
+     Add a new child coordinator and start it.
+     - Parameter coordinator: The coordinator implementation to start.
+     - Parameter identifier: A string identifiying this particular coordinator.
+     - Parameter callback: An optional `CoordinatorCallback` passed to the coordinator's `start()` method.
+     - Returns: The started coordinator.
+   */
+   func startChild<T: NSObject where T: Coordinator>(coordinator coordinator: T, withIdentifier identifier: String, callback: CoordinatorCallback?) -> T
+
+   /**
+     Stops the coordinator and removes our reference to it.
+     - Parameter identifier: The string identifier of the coordinator to stop.
+     - Parameter callback: An optional `CoordinatorCallback` passed to the coordinator's `stop()` method.
+   */
+   func stop(coordinatorWithIdentifier identifier: String, callback: CoordinatorCallback?)
+}
+```
+
+```swift
+/**
+ A default implmentation that provides a few convenience methods for starting and stopping coordinators.
+ */
+extension Coordinator {
+   // Default implementation, so that we don't have to do this for all coordinators.
+   func startChild<T: NSObject where T: Coordinator>(coordinator coordinator: T, withIdentifier identifier: String, callback: CoordinatorCallback?) -> T {
+      childCoordinators[identifier] = coordinator
+      coordinator.start(withCallback: callback)
+      return coordinator
+   }
+
+   func stop(coordinatorWithIdentifier identifier: String, callback: CoordinatorCallback? = nil) {
+      guard
+         let coordinator = childCoordinators[identifier] as? Coordinator,
+         let index = childCoordinators.indexForKey(identifier)
+      else {
+         fatalError("No such coordinator: \(identifier)")
+      }
+
+      coordinator.stop(withCallback: { [unowned self] (coordinator) in
+         self.childCoordinators.removeAtIndex(index)
+         callback?(coordinator)
+      })
+    }
+
+   /**
+      Start a child coordinator of the inferred type and store a reference to ti.
+      - Parameter rootViewController: The root view controller of the new child coordinator.
+      - Parameter configure: An optional configuraiton block
+   */
+   func startChildWith<T: NSObject where T: Coordinator>(
+      rootViewController: UIViewController,
+      callback: CoordinatorCallback? = nil,
+      configureWith configurationBlock: ((T) -> Void)? = nil
+   ) -> T {
+      let coordinator = T.init(appContext: appContext, storyboard: storyboard, rootViewController: rootViewController)
+      configurationBlock?(coordinator)
+      startChild(coordinator: coordinator, withIdentifier: coordinator.identifier, callback: callback)
+      return coordinator
+   }
+}
+```
 
 (To simplify things pertaining to storing of child coordinators etc I made the coordinators `NSObject`s. Generic self constraints and what not. Would be great to get around this somehow.)
 
@@ -44,31 +145,33 @@ So imagine you have a view controller showing a contact. The view is displaying 
 
 The delegate of the view controller is the `ContactsBrowsingCoordinator`. When the `wantsToEdit` method is called it spins off a `EditContactCoordinator` doing something like this:
 
-```
+```swift
 func contactDetailViewController(contactDetailViewController: ContactDetailViewController, wantsToEditContact contact: Contact) {
   // The type of coordinator to start is inferred by the type declaration in the block.
   startChildWith(rootViewController, callback: nil) { (coordinator: EditContactCoordinator) in
-		// Your chance to set behavioral properties on the `EditContactCoordinator`, like the contact being edited.
-		// This block is called _before_ the start method of the coordinator.
-		coordinator.contactToEdit = contact
-		
-		// This coordinator can be a delegate of the new coordinator to get notified of events. Like when the user is done. This is when this coordinator would call `stop` on the edit coordinator which would then rewind the navigation stack and return to where it kicked off.
-		coordinator.delegate = self
+    // Your chance to set behavioral properties on the `EditContactCoordinator`, like the contact being edited.
+    // This block is called _before_ the start method of the coordinator.
+    coordinator.contactToEdit = contact
+
+    // This coordinator can be a delegate of the new coordinator to get notified of events. Like when the user is
+    // done. This is when this coordinator would call `stop` on the edit coordinator which would then rewind the
+    // navigation stack and return to where it kicked off.
+    coordinator.delegate = self
   }
 }
 ```
 
 In the `start` method of the `EditContactCoordinator` we create the edit view controller and present it:
 
-```
+```swift
 func start(withCallback: CoordinatorCallback) {
   // See: https://medium.com/swift-programming/uistoryboard-safer-with-enums-protocol-extensions-and-generics-7aad3883b44d
   let viewController: EditContactViewController = storyboard.instantiateViewController()
-  
+
   // Pass on the property we set before
   viewController.contact = contact
   viewController.delegate = self
-  
+
   rootViewController.presentViewController(viewController, animated: true)
 }
 ```
