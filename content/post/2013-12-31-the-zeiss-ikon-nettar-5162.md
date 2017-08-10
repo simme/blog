@@ -6,7 +6,7 @@ date:   2014-01-01T15:05:06.000Z
 tags: Film Photography
 ---
 
-![Zeiss Ikon Nettar 516/2](/content/images/2013/Dec/nettar_2.jpg)
+![Zeiss Ikon Nettar 516/2](/images/2013/Dec/nettar_2.jpg)
 For Christmas this year my fantastic girlfriend bought me a _Zeiss Ikon Nettar 516/2_. "What is this?", you might ask. And it's a good question indeed.
 
 The _Nettar 516/2_ is, from what I've gathered, one of the rarest models in the _Nettar_ series. A series of folding cameras produced by _Zeiss Ikon_ during the 1930's and 1940's. It takes [120 film](http://en.wikipedia.org/wiki/120_film) which is still wildly available today!
@@ -34,7 +34,7 @@ Some dude on [a forum](http://nelsonfoto.com/SMF/index.php?topic=7457.msg70441#m
 
 > The Novar it's one of those three component air-spaced Triplet type, the Tessar it's a four elements lens and it has been (I believe so), the most imitated formula lens in the photography history. The Novar was a cheap lens but it's very good if you don't work it at full aperture.
 
-![Zeiss Ikon Nettar 516/2 front](/content/images/2013/Dec/nettar_3.jpg )
+![Zeiss Ikon Nettar 516/2 front](/images/2013/Dec/nettar_3.jpg )
 
 Generally people seem to agree that it's a good lens and the fact that _Tessar_ has the better reputation makes cameras with a _Novar_ lens cheaper, which is good if you want one! The biggest drawback seems to be the soft focus on bigger apertures.
 
@@ -52,7 +52,7 @@ Before winding the film, make sure the camera is open. Otherwise the opening of 
 
 Once the camera is open it's time to wind the film. On the back of the camera you'll find a small window. It's protected by a small door that can be moved to the side to expose the back of the film through a read piece of glass. As you probably know if you're reading this, all 120 films have markings on the back of the protective paper that shows you what exposure you're on. Wind the film until you see a **1**, if it's the first shot your making, or the next number.
 
-![Zeiss Ikon Nettar 516/2](/content/images/2013/Dec/nettar_1.jpg )
+![Zeiss Ikon Nettar 516/2](/images/2013/Dec/nettar_1.jpg )
 
 Measure the light and make your adjustments. Set the aperture to **11 or higher** if you can. From what I've found during my research bigger apertures seem to cause softer focus. I have no experience of this on my own, yet, though.
 
@@ -76,7 +76,7 @@ Being used to shoot mostly 35mm film it feels a bit weird framing my shots. But 
 
 I really like this camera. Not only is it gorgeous to look at, it's also very fun to use. I'm really looking forward to shooting more with it. I already have it loaded with a roll of _Ilford Delta 400_. Which I intended to push to 800 just to squeeze a bit more utility out of the big apertures on this camera.
 
-![Zeiss Ikon Nettar 516/2](/content/images/2013/Dec/nettar_4.jpg)
+![Zeiss Ikon Nettar 516/2](/images/2013/Dec/nettar_4.jpg)
 
 It's a bit bulky to carry around at ~700 grams, or a bit more then a pound for my friends stuck in the stonea.. I mean stuck with the imperial system. When folded, it does however fit nicely inside a large pocket. It also has a handle you can carry it with.
 

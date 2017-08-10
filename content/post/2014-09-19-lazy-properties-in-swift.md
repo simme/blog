@@ -12,7 +12,7 @@ I've spent some time now trying to write a little app, and I recently wanted to 
 
 I first tried using optionals, ie:
 
-```
+```swift
 class MyTableView: UITableViewController {
   let dataSource: CustomDataSource?
   
@@ -29,7 +29,7 @@ Spewing out some frustration on Twitter gave me [a hint](https://twitter.com/mac
 
 So after reading up on `lazy` my tableview controller now looks like this:
 
-```
+```swift
 class MyTableView: UITableViewController {
   lazy var dataSource: FormalTableViewDataSource = {
     return CustomDataSource()
@@ -43,4 +43,4 @@ class MyTableView: UITableViewController {
 
 This also works when you have a property that's an object who's constructor needs an object that you create after `init()` for example.
 
-I'll be super greatful if anyone tells me I'm doing it wrong :)
+I'll be super grateful if anyone tells me I'm doing it wrong :)

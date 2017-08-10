@@ -20,7 +20,7 @@ Was about to tear my own hair off due to issue with `UIStackView` and autolayout
 
 The stack view are laying the custom views out in a horizontal fashion. Now, whenever I added a constraint similar to this:
 
-```
+```swift
 let xConstraint = NSLayoutConstraint(item: label,
   attribute: .Left,
   relatedBy: .Equal,
@@ -34,7 +34,7 @@ to my custom view (where `self` in this case is the custom view) would make the 
 
 Took a while to figure out that the reason for this was a line that I automatically add to all of my views as soon as I need to do some programmatic autolayouting:
 
-```
+```swift
 self.translatesAutoresizingMaskIntoConstraints = false
 ```
 

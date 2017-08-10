@@ -462,4 +462,9 @@ a.read-more {
 .pagination-older:after {
   content: "›"; }
 
+/* images */
+.post img {
+  max-width: 100%;
+  margin: 4rem auto; }
+
 /*# sourceMappingURL=master.css.map */
