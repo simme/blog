@@ -104,9 +104,9 @@ body {
 .post, .post-summary {
    p {
       color: $color5;
-      font: 400 #{$font-size-2}/1.5 $body-font;
+      font: 500 #{$font-size-2}/1.5 $body-font;
       padding: 0;
-      margin: 0 auto 1.2rem;
+      margin: 0 auto 2rem;
       max-width: $max-width-text;
    }
 }
