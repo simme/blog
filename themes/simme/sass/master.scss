@@ -99,6 +99,11 @@ body {
    display: block;
    max-width: $max-width-text;
    margin: auto auto 1.2rem;
+   text-decoration: none;
+
+   &:focus, &:hover {
+      opacity: 0.8;
+   }
 }
 
 .post, .post-summary {

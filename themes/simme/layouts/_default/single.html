@@ -1,7 +1,9 @@
 {{ partial "header.html"}}
     <article class="post h-entry">
       <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
-      <h1 class="p-name">{{ .Title }}</h1>
+      {{ if ne .Title "untitled" }}
+         <h1 class="p-name">{{ .Title }}</h1>
+      {{ end }}
       <div class="content e-content">
          {{ .Content }}
       </div>

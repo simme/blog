@@ -1,7 +1,9 @@
 {{ partial "header.html"}}
 {{ range sort .Paginator.Pages }}
     <article class="post-summary">
-      <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
+      <a href="{{ .Permalink }}">
+         <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
+      </a>
       <h2 class="p-name">
          <a href="{{ .Permalink }}">
             {{ .Title }}
