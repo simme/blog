@@ -187,13 +187,17 @@ a.read-more {
 /* Footer */
 .page-footer {
    display: flex;
-   max-width: $max-width;
+   max-width: $max-width-text;
    justify-content: space-between;
    width: 100%;
-   padding: 4rem 2rem 6rem;
+   padding: 4rem 0 6rem;
    margin: auto;
    color: $color4;
    font: 400 1.6rem/1.5 $body-font;
+
+   nav {
+      flex-shrink: 0;
+   }
 
    nav ol {
       display: flex;
@@ -211,6 +215,13 @@ a.read-more {
       &:focus, &:hover {
          color: $colorF;
       }
+   }
+}
+
+@media screen and (max-width: #{$max-width}) {
+   .page-footer {
+      flex-direction: column;
+      padding: 2rem;
    }
 }
 

@@ -1,10 +1,15 @@
       </section>
 
       <footer class="page-footer">
-         <div>
+         <div class="h-card vcard">
             <p>
-               My name is Simon and I'm a co-founder and iOS developer at <a href="http://filibaba.com">Filibaba</a>.
-               I live in southern Sweden with my wife and a whole bunch of animals.
+               My name is <a href={{ .Site.BaseURL }} class="p-name u-url url author metatag" rel="me">Simon</a> and I'm
+               a co-founder and iOS developer at <a href="http://filibaba.com">Filibaba</a>. I live in southern Sweden
+               with my wife and a whole bunch of animals.
+            </p>
+            <p>
+               I don't really like emails, but if you want to contact me for some reason you can reach me at
+               <a href="mailto:hi@iamsim.me" class="u-email email metatag" rel="me">hi@iamsim.me</a>
             </p>
             <p>
                All content and code on this site is provided under the MIT license.
@@ -12,9 +17,10 @@
          </div>
          <nav>
             <ol>
-               <li><a href="https://twitter.com/simmelj">@simmelj</a></li>
-               <li><a href="https://github.com/simme">GitHub</a></li>
-               <li><a href="https://iamsim.me/index.xml">RSS</a></li>
+               <li><a rel="me" href="https://twitter.com/simmelj">@simmelj</a></li>
+               <li><a rel="me" href="https://github.com/simme">GitHub</a></li>
+               <li><a rel="feed" href="https://iamsim.me/index.xml">RSS</a></li>
+               <li><a rel="feed" href="https://iamsim.me/feed.json">JSON Feed</a></li>
             </ol>
          </nav>
       </footer>
