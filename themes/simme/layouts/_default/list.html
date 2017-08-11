@@ -2,8 +2,12 @@
 {{ range sort .Paginator.Pages }}
     <article class="post-summary">
       <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
-      <h2><a href="{{ .Permalink }}">{{ .Title }}</a>{{ if .Draft }} ::Draft{{ end }}</h2>
-      <div class="content">
+      <h2 class="p-name">
+         <a href="{{ .Permalink }}">
+            {{ .Title }}
+         </a>
+      </h2>
+      <div class="content p-summary">
          <p>
             {{ .Summary | plainify | safeHTML }}
          </p>
