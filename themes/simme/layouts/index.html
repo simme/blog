@@ -1,7 +1,7 @@
 {{ partial "header.html"}}
 {{ $paginator := .Paginate (where .Site.Pages "Type" "in" (slice "post" "microblog"))}}
 {{ range sort $paginator.Pages }}
-    <article class="post-summary">
+<article class="post-summary{{ if eq .Section "microblog"}} microblog{{end}}">
       <a class="date" href="{{ .Permalink }}">
          <span>{{ .Date.Format "January 2, 2006" }}</span>
       </a>
