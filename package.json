@@ -8,7 +8,8 @@
     "sass-build": "node-sass --output themes/simme/static/css --output-style compressed themes/simme/sass",
     "precache": "sw-precache --root=public --sw-file-path=public/service-worker.js",
     "build-hugo": "hugo -v",
-    "build": "npm run sass-build && npm run build-hugo && npm run precache"
+    "build": "npm run sass-build && npm run build-hugo && npm run precache",
+    "netlify-build": "npm run sass-build && hugo_0.26 -v && npm run precache"
   },
   "dependencies": {
     "concurrently": "^3.5.0",
