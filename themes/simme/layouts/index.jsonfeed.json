@@ -11,7 +11,9 @@
     {
       "id": {{ .Permalink | jsonify }},
       "url": {{ .Permalink | jsonify }},
-      "title": {{ .Title | jsonify }},
+      {{ if ne .Title "untitled" }}
+         "title": {{ .Title | jsonify }},
+      {{ end }}
       "date_published": {{ .Date.Format "2006-01-02T15:04:05-0700" | jsonify }},
       "content_html": {{ .Content | jsonify }}
     }
