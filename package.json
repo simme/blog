@@ -9,7 +9,7 @@
     "precache": "sw-precache --root=public --sw-file-path=public/service-worker.js",
     "build-hugo": "hugo -v",
     "build": "npm run sass-build && npm run build-hugo && npm run precache",
-    "netlify-build": "npm run sass-build && hugo -v && npm run precache"
+    "netlify-build": "npm run sass-build && hugo -v && npm run precache && ./pingmicroblog.sh"
   },
   "dependencies": {
     "concurrently": "^3.5.0",
