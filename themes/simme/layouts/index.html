@@ -17,10 +17,10 @@
         {{ if .Truncated }}
          <a class="read-more" href="{{ .Permalink }}">Read more...</a>
         {{ end }}
+        {{ if eq .Section "link" }}
+            <a class="read-more" href="{{ .Permalink }}">Permalink</a>
+        {{ end }}
       </div>
-      {{ if eq .Section "link" }}
-         <a class="read-more" href="{{ .Permalink }}">Permalink</a>
-      {{ end }}
     </article>
     {{ end }}
    <div class="pagination">
