@@ -1,15 +1,21 @@
 {
   "version": "https://jsonfeed.org/version/1",
   "title": "{{ .Site.Title }}",
-  "home_page_url": {{ .Permalink | jsonify }},
+  "home_page_url": "https://www.iamsim.me/",
   "feed_url": {{ with .OutputFormats.Get "jsonfeed" -}}
     {{- .Permalink | jsonify -}}
   {{- end }},
+  "author": {
+     "name": "Simon Ljungberg",
+  }
   "items": [
     {{ range $index, $entry := first 15 .Data.Pages }}
     {{- if $index }}, {{ end }}
     {
       "id": {{ .Permalink | jsonify }},
+      {{ if eq .Section "link" }}
+      "external_url": {{ .Params.link | jsonify }},
+      {{ end }}
       "url": {{ .Permalink | jsonify }},
       {{ if ne .Title "untitled" }}
          "title": {{ .Title | jsonify }},

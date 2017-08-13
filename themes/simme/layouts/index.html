@@ -1,11 +1,13 @@
 {{ partial "header.html"}}
-{{ $paginator := .Paginate (where .Site.Pages "Type" "in" (slice "post" "microblog"))}}
+{{ $paginator := .Paginate (where .Site.Pages "Type" "in" (slice "post" "microblog" "link"))}}
 {{ range sort $paginator.Pages }}
-<article class="post-summary{{ if eq .Section "microblog"}} microblog{{end}}">
+<article class="post-summary{{ if eq .Section "microblog"}} microblog{{end}}{{ if eq .Section "link"}} link{{end}}">
       <a class="date" href="{{ .Permalink }}">
          <span>{{ .Date.Format "January 2, 2006" }}</span>
       </a>
-      {{ if ne .Title "untitled" }}
+      {{ if eq .Section "link" }}
+         <h2><a href="{{ .Params.link }}">{{ .Title }}</a></h2>
+      {{ else if ne .Section "microblog"}}
          <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
       {{ end }}
       <div class="content">
@@ -16,6 +18,9 @@
          <a class="read-more" href="{{ .Permalink }}">Read more...</a>
         {{ end }}
       </div>
+      {{ if eq .Section "link" }}
+         <a class="read-more" href="{{ .Permalink }}">Permalink</a>
+      {{ end }}
     </article>
     {{ end }}
    <div class="pagination">

@@ -300,3 +300,22 @@ a.read-more {
       border-bottom-right-radius: 200px 100px;
    }
 }
+
+/* link */
+.link {
+   h2 a {
+      position: relative;
+      &:after {
+         position: absolute;
+         content: " →";
+         transition: all .3s ease-out;
+         transform: translateX(5px);
+      }
+
+      &:focus, &:hover {
+         &:after {
+            transform: translateX(15px);
+         }
+      }
+   }
+}
