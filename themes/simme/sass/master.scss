@@ -69,6 +69,15 @@ body {
       margin: 0 auto 2rem auto;
       padding: 0;
       max-width: $max-width-text;
+
+      a {
+         color: currentcolor;
+         text-decoration: none;
+
+         &:hover, &:focus {
+            color: $color9;
+         }
+      }
    }
 }
 
@@ -82,7 +91,7 @@ body {
       margin: 0 0 2rem 0;
       padding: 0;
       a {
-         color: inherit;
+         color: currentcolor;
          text-decoration: none;
 
          &:hover, &:focus {
@@ -303,7 +312,7 @@ a.read-more {
 
 /* link */
 .link {
-   h2 a {
+   h2 a, h1 a {
       position: relative;
       &:after {
          position: absolute;

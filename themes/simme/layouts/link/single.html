@@ -1,0 +1,22 @@
+{{ partial "header.html"}}
+    <article class="post h-entry link">
+      <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
+      {{ if ne .Title "untitled" }}
+         <h1 class="p-name"><a href="{{ .Params.link }}">{{ .Title }}</a></h1>
+      {{ end }}
+      <div class="content e-content">
+         {{ .Content }}
+      </div>
+    </article>
+
+   <script id="webmention-hosted">
+      (function () {
+         var sn = document.createElement("script"), s = document.getElementsByTagName("script")[0], url;
+         url = document.querySelectorAll ? document.querySelectorAll("link[rel~=canonical]") : false;
+         url = url && url[0] ? url[0].href : false;
+         sn.type = "text/javascript"; sn.async = true;
+         sn.src = "//webmention.herokuapp.com/api/embed?url=" + encodeURIComponent(url || window.location);
+         s.parentNode.insertBefore(sn, s);
+      }());
+   </script>
+{{ partial "footer.html"}}
