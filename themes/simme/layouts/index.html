@@ -12,7 +12,11 @@
       {{ end }}
       <div class="content">
          <p>
-            {{ .Summary | plainify | safeHTML }}
+            {{ if eq .Section "link" }}
+               {{ .Content }}
+            {{else }}
+               {{ .Summary | plainify | safeHTML }}
+            {{end}}
          </p>
         {{ if .Truncated }}
          <a class="read-more" href="{{ .Permalink }}">Read more...</a>
