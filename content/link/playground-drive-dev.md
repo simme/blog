@@ -1,5 +1,5 @@
 ---
-title: "Playground Drive Development"
+title: "Playground Driven Development"
 date: 2017-08-14T10:16:08+02:00
 link: "https://talk.objc.io/episodes/S01E51-playground-driven-development-at-kickstarter"
 ---
