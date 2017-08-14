@@ -285,6 +285,8 @@ a.read-more {
    border-radius: 8px;
    position: relative;
 
+   p { margin: 0; color: $color4; }
+
    &:before {
       content: "";
       position: absolute;
