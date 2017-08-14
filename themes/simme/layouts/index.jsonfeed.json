@@ -6,7 +6,7 @@
     {{- .Permalink | jsonify -}}
   {{- end }},
   "author": {
-     "name": "Simon Ljungberg",
+     "name": "Simon Ljungberg"
   }
   "items": [
     {{ range $index, $entry := first 15 .Data.Pages }}
