@@ -14,6 +14,8 @@
          <p>
             {{ if eq .Section "link" }}
                {{ .Content }}
+            {{ else if eq .Section "microblog" }}
+               {{ .Content }}
             {{else }}
                {{ .Summary | plainify | safeHTML }}
             {{end}}
