@@ -195,9 +195,9 @@ Due to generic constraints, that I'm not proficient enough to work around, I wen
 let vc = StaticTableViewController<FeedbackAction>(style: .grouped)
 vc.title = "Send Feedback"
 vc.selectionCallback = { action, vc in
-    if let indexPath = vc.tableView.indexPathForSelectedRow {
-        vc.tableView.deselectRow(at: indexPath, animated: true)
-    }
+   if let indexPath = vc.tableView.indexPathForSelectedRow {
+       vc.tableView.deselectRow(at: indexPath, animated: true)
+   }
    switch action {
       case .email: sendEmail()
       case .rate: openAppStore()
