@@ -198,11 +198,11 @@ vc.selectionCallback = { action, vc in
     if let indexPath = vc.tableView.indexPathForSelectedRow {
         vc.tableView.deselectRow(at: indexPath, animated: true)
     }
-	  switch action {
-		  case .email: sendEmail()
-		  case .rate: openAppStore()
-		  case .tellFriend: shareApp()
-	  }
+   switch action {
+      case .email: sendEmail()
+      case .rate: openAppStore()
+      case .tellFriend: shareApp()
+   }
 }
 ```
 
