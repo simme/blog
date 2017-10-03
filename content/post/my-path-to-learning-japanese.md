@@ -10,7 +10,7 @@ I've been fascinated by Japan since a pretty early age. It began with Naruto bei
 
 But more than that I've become fascinated by the culture. The great attention to detail in craftsmanship. The thought of living a simple life dedicated to perfecting one skill. Stuff like that.
 
-My hope is to go there one day, to live like a Japanese for a few months. I want to practice karate in "a real dojo", eat a lot of ramen and see all the sights. But first and foremost I just want to get a taste of life in Japan. So the goal with this self-studying is to become proficient enough to get by in casual conversations and to make my way around the country without accidentally [eating bugs][bugs].
+My hope is to go there one day, to live like the Japanese for a few months. I want to practice karate in "a real dojo", eat a lot of ramen and see all the sights. But first and foremost I just want to get a taste of life in Japan. So the goal with this self-studying is to become proficient enough to get by in casual conversations and to make my way around the country without accidentally [eating bugs][bugs].
 
 Here are the resources I'm currently utilizing in my nihongo-quest.
 
