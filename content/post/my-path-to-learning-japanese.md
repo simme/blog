@@ -22,7 +22,7 @@ The progress is pretty slow since I only dedicate a ~15 minutes a day to learnin
 
 読みますにありがとう
 
-[tofugu]: "https://www.tofugu.com/"
-[memrise]: "https://www.memrise.com/" 
-[wanikani]: "https:/www.wanikani.com/"
-[bugs]: "https://www.tofugu.com/japan/eating-bugs/"
+[tofugu]: https://www.tofugu.com/
+[memrise]: https://www.memrise.com/ 
+[wanikani]: https:/www.wanikani.com/
+[bugs]: https://www.tofugu.com/japan/eating-bugs/
