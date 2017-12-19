@@ -29,7 +29,7 @@ Castro also has _great_ [drag and drop][dnd] support on iOS 11. I do not use thi
 
 ## Minor Annoyances
 
-* The biggest annoyance, when coming from Overcast, is the lack of a Smart Speed™ like feature. Something I still haven't really gotten used to being without. I hadn't realized just how much silence there is in some podcasts.
+* The biggest annoyance, when coming from Overcast, is the lack of a Smart Speed™ like feature. Something I still haven't really gotten used to being without. I hadn't realized just how much silence there is in some podcasts.
 * I know it's a contentious topic, but I do love me some 3D Touch. It's just so satisfying to peek, and a neat way to preview things without moving my finger too much. It's a small thing, but the fact that there's no 3D Touch support at all trips me up sometimes when triaging. Being able to quickly peek at the show notes to decide whether or not a specific episodes goes to the archive would be nice.
 * I still have Overcast installed and comparing the notifications for the apps I can see that Overcast is generally quicker to pick up new episodes. Only really annoying when I'm waiting for the latest episode of [The Daily][Daily] to land before I take the dogs on a lunch walk.
 * Episodes in the archive do not download preemptively. I only have 2MBits of shaky ADSL at home. So sometimes it's a bummer that there's no setting to always download episodes in the inbox.
