@@ -1,5 +1,5 @@
 ---
-title: "Max' iOS Icon Template"
+title: "Max's iOS Icon Template"
 date: 2017-12-20T11:24:39+01:00
 link: "http://www.iosicontemplate.com"
 ---
