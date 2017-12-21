@@ -27,6 +27,8 @@ Castro also has _great_ [drag and drop][dnd] support on iOS 11. I do not use thi
 * When you pause an episode in it's last ten minutes you get a notification that gives you the option to skip to the next one right away.
 * The rich push notifications when a new episodes arrives makes triage from the lock screen (or wrist) very efficient.
 
+**Update:** As [@ozlubing](https://twitter.com/ozlubling/status/943957026685759490) pointed out, there is actually no Watch app. What I'm referring to is the "automatically on" Now Playing screen in watchOS 4!
+
 ## Minor Annoyances
 
 * The biggest annoyance, when coming from Overcast, is the lack of a Smart Speed™ like feature. Something I still haven't really gotten used to being without. I hadn't realized just how much silence there is in some podcasts.
