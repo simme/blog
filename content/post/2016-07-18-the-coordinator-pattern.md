@@ -30,7 +30,7 @@ After having each of the flows down I started thinking about what a coordinator 
 * They need a reference to my "application context" (an object containing database connections and settings).
 * Start and stop child coordinators.
 
-I came up with this protocol (gist, might not show up in RSS readers):
+I came up with this protocol:
 
 ```swift
 //
