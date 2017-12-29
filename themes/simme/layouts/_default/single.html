@@ -1,4 +1,4 @@
-{{ partial "header.html"}}
+{{ partial "header.html" .}}
     <article class="post h-entry">
       <span class="date">{{ .Date.Format "January 2, 2006" }}</span>
       {{ if ne .Title "untitled" }}

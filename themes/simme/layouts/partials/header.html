@@ -11,6 +11,11 @@
       <link href="/feed.json" rel="alternate" type="application/json" title="I am Simme" />
       <link rel="webmention" href="https://webmention.herokuapp.com/api/webmention" />
       <link href="https://micro.blog/simme" rel="me" />
+
+      <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+      <meta property="og:title" content="{{ .Title }}" />
+      <meta property="og:description" content="{{ .Summary }}" />
+      <meta property="og:image" content="" />
    </head>
    <body>
 
