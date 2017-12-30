@@ -48,7 +48,7 @@ The upbeat funky style just hit home for me and I am looking forward to hearing 
 
 Late last year I was actively searching YouTube for some J-pop and got served the video for BABYMETAL's [Gimme Chocolate!!][gc]. Clearly a product of the Japanese [Idol Culture][ic], engineered to push just the right buttons in my brain. I was a fan from there on.
 
-I mean, how charming are three girls acting tough as hell singing metal (with a heavy dose of pop mixed in). And, these girls are talented. The lead singer has _fantastic_ range.
+I mean, how charming are three girls being tough as hell, singing metal (with a heavy dose of pop mixed in). These girls are talented. The lead singer has _fantastic_ range.
 
 The [Road of Resistance][rorl] live performance is just a fantastic rock anthem. The 20.000 people crowd does nothing but add to the epic feeling. Those mosh pits are _not_ to be taken lightly. I'd be remiss if I didn't also mention [The One][one]. Just epic.
 
