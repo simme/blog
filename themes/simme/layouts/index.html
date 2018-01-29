@@ -13,7 +13,7 @@
       <div class="content">
          <p>
             {{ if eq .Section "link" }}
-               {{ .Content }}
+               {{ .Summary | plainify | safeHTML }}
             {{ else if eq .Section "microblog" }}
                {{ .Content }}
             {{else }}
