@@ -290,6 +290,7 @@ a.read-more {
    position: relative;
 
    p { margin: 0; color: $color4; }
+   ol, ul { color: $color4; }
 
    &:before {
       content: "";
