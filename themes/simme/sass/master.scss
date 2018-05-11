@@ -53,7 +53,7 @@ body {
 }
 
 .page-header-logo {
-   font: 600 #{$font-size-4}/1 $header-font;
+   font: 900 #{$font-size-4}/1 $header-font;
    margin: 5rem 0 1rem;
    color: $colorB;
    padding: 0;
@@ -64,7 +64,7 @@ body {
 /* Posts */
 .post {
    h1 {
-      font: 600 #{$font-size-3}/1 $header-font;
+      font: 900 #{$font-size-3}/1 $header-font;
       color: $color8;
       margin: 0 auto 2rem auto;
       padding: 0;
@@ -86,7 +86,7 @@ body {
    max-width: $max-width-text;
 
    h2 {
-      font: 600 #{$font-size-3}/1 $header-font;
+      font: 900 #{$font-size-3}/1 $header-font;
       color: $color8;
       margin: 0 0 2rem 0;
       padding: 0;
@@ -133,10 +133,10 @@ body {
       max-width: $max-width-text;
    }
 
-   h2 { font: 600 #{$font-size-3}/1 $header-font; }
-   h3 { font: 600 #{$font-size-3*0.8}/1 $header-font; }
-   h4 { font: 600 #{$font-size-3*0.7}/1 $header-font; }
-   h5 { font: 600 #{$font-size-3*0.6}/1 $header-font; }
+   h2 { font: 900 #{$font-size-3}/1 $header-font; }
+   h3 { font: 900 #{$font-size-3*0.8}/1 $header-font; }
+   h4 { font: 900 #{$font-size-3*0.7}/1 $header-font; }
+   h5 { font: 900 #{$font-size-3*0.6}/1 $header-font; }
 
    a {
       color: $colorD;
