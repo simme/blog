@@ -1,5 +1,5 @@
 ---
-title: "Tricot Potage"
+title: "Tricot's Potage"
 date: 2018-05-22T21:49:03+02:00
 link: "https://www.npr.org/sections/allsongs/2018/05/22/613008999/tricot-splatters-paint-onto-brightly-colored-potage"
 ---
