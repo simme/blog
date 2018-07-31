@@ -20,8 +20,7 @@ Once you've gotten all the upgrades and unlocked all the planets it doesn't offe
 if you've had one really good run that would take a very long time to even come close to again. Which is a problem with
 all high scores games, I guess.
 
-If the game had some additional mechanic I think it could extend the fun greatly. Although I don't know what this
-would look like. :) But maybe Martin has an update up his sleeve, who knows? Another thing that I really think could
+If the game had some additional mechanic I think it could extend the fun greatly. Another thing that I really think could
 elevate the gameplay would be some haptic feedback.
 
 In conclusion, [Holedown](https://itunes.apple.com/us/app/holedown/id1297270249?mt=8&at=1010lGGq) is a great distraction from this heat wave we're currently experiencing in Sweden. It's out for iOS and Android and I think you should buy it and play it!
