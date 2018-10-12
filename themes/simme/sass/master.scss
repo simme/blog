@@ -176,6 +176,8 @@ body {
       margin: auto;
       list-style-position: outside;
       max-width: $max-width-text;
+
+      li { margin-bottom: 0.8rem; }
    }
 
    blockquote {
