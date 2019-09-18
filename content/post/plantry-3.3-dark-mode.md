@@ -24,7 +24,7 @@ We've also redone the Search-tab. It makes full use of the new compositional lay
 
 ![Plantry recipe view in light and dark mode](/images/2019/darkmode-plantry-author.jpg)
 
-As we decided to go iOS13 only we could also take full advantage of the new diffable data source APIs in iOS 13. The new Search tab has actually eschewed or CoreData backend (even though it got compliments at the CoreData lab at WWDC2019, not that I'm bragging) for a SQLite database managed through the _excellent_ [GRDB](https://github.com/groue/GRDB.swift).
+As we decided to go iOS13 only we could also take full advantage of the new diffable data source APIs in iOS 13. The new Search tab has actually eschewed our CoreData backend (even though it got compliments at the CoreData lab at WWDC2019, not that I'm bragging) for a SQLite database managed through the _excellent_ [GRDB](https://github.com/groue/GRDB.swift).
 
 In an update coming very soon we'll have full text search of recipes, including searching for ingredients! Something we've wanted to do for a long time. I usually try to avoid mentioning upcoming features that aren't completely baked. But since we had to cut search from this release I felt it was worth mentioning.
 
