@@ -6,7 +6,7 @@ tags: swift, combine
 
 Anyone who's ever written an iOS app has come in contact with the delegate pattern. It's a great pattern and fills an important role in iOS development.
 
-_However_, sometimes when you're writing your own custom classes it can feel like a bunch of boiler plate just to notify a delegate that something happened. You might resort to adding a couple of callback properties instead, but those come with their own baggage.
+_However_, sometimes when you're writing your own custom classes it can feel like a bunch of boilerplate just to notify a delegate that something happened. You might resort to adding a couple of callback properties instead, but those come with their own baggage.
 
 ### Publishing Actions
 
