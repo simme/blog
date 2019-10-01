@@ -2,7 +2,6 @@
 title: "Using Combine to Supplement Delegates With Publishers"
 date: 2019-10-01T13:36:07+02:00
 tags: swift, combine
-draft: true
 ---
 
 Anyone who's ever written an iOS app has come in contact with the delegate pattern. It's a great pattern and fills an important role in iOS development.
