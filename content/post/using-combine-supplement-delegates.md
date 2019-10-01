@@ -121,3 +121,27 @@ let subscription = viewController.sink { action in
 I find this pattern pretty neat and handy when a delegate isn't really necessary. Or when you need to be able to communicate actions to multiple subscribers. Probably nothing new to all you RX folks. But for us who never took the leap before Combine it is brand new and cool.
 
 I'm still in the shallow part of the Combine pool. So feel free to poke me if I've made something wacky! I'm [simmelj](https://www.twitter.com/simmelj) on Twitter. And this blog supports WebMentions thanks to [A WebMention Endpoint](https://webmention.herokuapp.com) by [VoxPelli](https://www.voxpelli.com).
+
+### Update
+
+[Jack Nutting](https://www.twitter.com/jacknutting) pointed out that it might be nicer to create one publisher per action instead. Making it less noisy on the subscriber side:
+
+```swift
+viewController.selectedItemPublisher.sink { item in ...}
+viewContorller.showFilterSettingsPublisher.sink { _ in ... }
+```
+
+This could even be achieved by creating an extension that provides publishers for each action, based on just filtering the base publisher.
+
+```swift
+extension MyCollectionViewController {
+    var itemSelectionPublisher: AnyPublisher<Item, Never> {
+        publisher.compactMap {
+            guard case let .selected(item) = $0 else { return nil }
+            return item
+        }.eraseToAnyPublisher()
+    }
+}
+```
+
+Depends on what your needs are and what you want to achieve. But no doubt this is an exciting area to explore!
