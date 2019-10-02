@@ -10,7 +10,7 @@ _However_, sometimes when you're writing your own custom classes it can feel lik
 
 ### Publishing Actions
 
-In the recent versions of [Pantry](https://www.pantry.app) I've explored a (to me) new pattern of making my view controllers and objects publishers and publishing actions instead when the user performs an action.
+In the recent versions of [Plantry](https://www.plantry.app) I've explored a (to me) new pattern of making my view controllers and objects publishers and publishing actions instead when the user performs an action.
 
 It might look a little something like this:
 
