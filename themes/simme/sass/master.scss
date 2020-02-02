@@ -330,6 +330,7 @@ a.read-more {
          content: " →";
          transition: all .3s ease-out;
          transform: translateX(5px);
+         top: 0.3em;
       }
 
       &:focus, &:hover {
