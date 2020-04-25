@@ -161,13 +161,22 @@ body {
    }
 
    code {
-      font: 400 #{$font-size-2}/1.3 'SFMono', 'Source Code Pro', 'Andale Mono', 'Monaco', monospace;
+      font: 400 inherit 'SFMono', 'Source Code Pro', 'Andale Mono', 'Monaco', monospace;
       color: $color6;
       background: $color1;
       border-radius: 4px;
       display: inline-block;
       padding: 0.1rem 0.4rem;
    }
+
+   kbd {
+    font-family: Helvetica, sans-serif;
+      color: $color6;
+      background: $color1;
+      border-radius: 4px;
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+    }
 
    ol, ul {
       color: $color5;
@@ -190,6 +199,13 @@ body {
         color: rgba($color5, 0.8);
       }
    }
+}
+
+.twitter-widget-wrapper {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    margin: 2rem 0;
 }
 
 a.read-more {
