@@ -43,7 +43,7 @@ body {
    max-width: $max-width-text;
 
    p {
-      font: 400 #{$font-size-2}/1.5 $body-font;
+      font: 500 #{$font-size-2}/1.5 $body-font;
       text-decoration: none;
       color: $colorD;
       opacity: 0.8;
@@ -104,7 +104,7 @@ body {
 
 .date {
    color: $color4;
-   font: 400 #{$font-size-1}/1.4 $body-font;
+   font: 500 #{$font-size-1}/1.4 $body-font;
    display: block;
    max-width: $max-width-text;
    margin: auto auto 1.2rem;
@@ -156,12 +156,12 @@ body {
       margin: 4rem 0;
       font-size: 62.5%;
       code {
-         font: 400 1.2rem/1.3 'SFMono', 'Source Code Pro', 'Andale Mono', 'Monaco', monospace;
+         font: 500 1.2rem/1.3 'SFMono', 'Source Code Pro', 'Andale Mono', 'Monaco', monospace;
       }
    }
 
    code {
-      font: 400 inherit 'SFMono', 'Source Code Pro', 'Andale Mono', 'Monaco', monospace;
+      font: 500 inherit 'SFMono', 'Source Code Pro', 'Andale Mono', 'Monaco', monospace;
       color: $color6;
       background: $color1;
       border-radius: 4px;
@@ -180,7 +180,7 @@ body {
 
    ol, ul {
       color: $color5;
-      font: 400 #{$font-size-2}/1.5 $body-font;
+      font: 500 #{$font-size-2}/1.5 $body-font;
       padding: 1.2rem 0 1.2rem 4rem;
       margin: auto;
       list-style-position: outside;
@@ -209,7 +209,7 @@ body {
 }
 
 a.read-more {
-      font: 400 #{$font-size-2}/1.4 $body-font;
+      font: 500 #{$font-size-2}/1.4 $body-font;
       color: $colorA;
       text-decoration: none;
       border-bottom: 1px solid $colorA;
@@ -231,7 +231,7 @@ a.read-more {
    padding: 4rem 0 6rem;
    margin: auto;
    color: $color4;
-   font: 400 1.6rem/1.5 $body-font;
+   font: 500 1.6rem/1.5 $body-font;
 
    nav {
       flex-shrink: 0;
@@ -267,7 +267,7 @@ a.read-more {
 .pagination {
    max-width: $max-width-text;
    text-align: center;
-   font: 400 #{$font-size-2}/1.5 $body-font;
+   font: 500 #{$font-size-2}/1.5 $body-font;
    margin: 5rem auto;
    color: $color4;
 }
@@ -391,7 +391,7 @@ hr {
    display: block;
    font-size: 1.4rem;
    color: $color4;
-   font: 400 #{$font-size-1}/1.4 $body-font;
+   font: 500 #{$font-size-1}/1.4 $body-font;
    text-decoration: none;
    &:hover, &:focus {
       opacity: 0.8;
