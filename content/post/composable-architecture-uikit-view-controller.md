@@ -25,6 +25,8 @@ Some general guidelines I try to keep in mind as I build up the structure of an 
 * Collection view cell's each have their own substate and cells implement their own reducer and actions. More on that in a later post.
 * Some view controller might act as sort of a "coordinator"/root view controller and thus is a superstate of multiple view controllers where there's a variable flow or loose connection between the involved controllers.
 
+I might dive into more on that topic later. The rest of this post will be focused on ergonomics and setup though.
+
 ## The `StateStoreViewController` class
 
 To reduce the amount of boilerplate I have to write with each new view controller I created this "super class" that takes care of the most basic things.
@@ -107,6 +109,14 @@ public let appReducer = Reducer<AppState, AppAction, Void> { state, action, _ in
   }
 }
 
+extension ViewStore where State == AppState {
+  // Assigning to a label's `text` property requires the
+  // value to be an optional string.
+  var currentCount: String? {
+    String(counter)
+  }
+}
+
 public final class CounterViewController: StateStoreViewController<AppState, AppAction> {
 
   public override func viewDidLoad() {
@@ -122,9 +132,7 @@ public final class CounterViewController: StateStoreViewController<AppState, App
   }
 
   private func configureStateObservation() {
-    viewStore.publisher.counter
-      .map(String.init)
-      .map(Optional.some)
+    viewStore.publisher.currentCount
       .assignNoRetain(to: \.text, on: countLabel)
       .store(in: &cancellables)
   }
