@@ -1,6 +1,6 @@
 ---
 title: "Composable Architecture and UIKit: The View Controller"
-date: 2020-12-21T09:34:57+01:00
+date: 2020-12-16T09:34:57+01:00
 tags: swift, composable-architecture, uikit
 ---
 
