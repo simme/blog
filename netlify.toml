@@ -1,7 +1,7 @@
 [context.deploy-preview.environment]
-  HUGO_VERSION = "0.59"
+  HUGO_VERSION = "0.79"
 
 [context.production.environment]
-  HUGO_VERSION = "0.59"
+  HUGO_VERSION = "0.79"
   HUGO_ENV = "production"
   HUGO_ENABLEGITINFO = "true"
