@@ -1,6 +1,7 @@
 ---
 title: "Composable Architecture and UIKit: The View Controller"
-date: 2020-11-21T21:34:57+01:00
+date: 2020-12-21T09:34:57+01:00
+tags: swift, composable-architecture, uikit
 ---
 
 _This will be the first in a — hopefully — long series of posts about building a UIKit app using [The Composable Architecture][TCA], developed by [Brandon Williams][brandon] and [Stephen Celis][stephen] of [PointFree.co][pointfree] fame._
