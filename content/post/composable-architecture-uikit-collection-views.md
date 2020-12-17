@@ -8,8 +8,6 @@ In the [first installment][first-post] of this blog series on UIKit and [The Com
 
 This post will build on that and see what it takes to implement a collection view.
 
-For this example we'll create a collection view that fetches images from a web API and displays them in the cells.
-
 The first thing you need to know about rendering items from a TCA `Store` in a table or collection view is that we won't be referring to the items by `IndexPath`. Instead we'll be using `IdentifiedArray`, a collection type provided by the library.
 
 This is because you'll be creating a new `Store` for each cell. And you'll be storing references to this store. So using index paths can become fragile if the list of items changes.
