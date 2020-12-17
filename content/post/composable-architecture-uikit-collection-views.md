@@ -352,7 +352,7 @@ configuration.trailingSwipeActionsConfigurationProvider = { [weak self] indexPat
 }
 ```
 
-This will add a left swipe action on the cell's that sends a `delete` action wrapped in a `itemAction`. Next we need to update our list reducer to handle this case:
+This will add a left swipe action on the cells that sends a `delete` action wrapped in a `itemAction`. Next we need to update our list reducer to handle this case:
 
 ```swift
 case let .itemAction(id: id, action: .delete):
@@ -370,7 +370,7 @@ In an upcoming post I will talk about how we can implement image loading for cel
 
 ## Conclusion
 
-You might be thinking this looks like a lot of extra stuff just to implement cells. Even if it's not apparent from this example, we now have cell's that automatically update themselves if their data changes. Since we used the `id` for the data source it will not update the collection view unless they change. But since the cell's have a store scoped to their particular piece of data they will update anyway!
+You might be thinking this looks like a lot of extra stuff just to implement cells. Even if it's not apparent from this example, we now have cells that automatically update themselves if their data changes. Since we used the `id` for the data source it will not update the collection view unless they change. But since the cells have a store scoped to their particular piece of data they will update anyway!
 
 Once we start getting into more "advanced" functionality it'll be clearer what this can unlock. But I feel like this post has gone on for long enough now. So that'll be a story for next time!
 
