@@ -4,8 +4,6 @@ date: 2022-11-14T22:13:00+01:00
 tags: personal,life
 ---
 
-# Parting
-
 We have known each other for half of our lives. Been together for just a little less — almost 16 years. That's a pretty long time, both in relative and absolute terms. However, the time has come to part ways. Having grown up together it will be a little like learning to stand again, but on one leg because the other leg walked off in another direction.
 
 Sara and I have made countless of beautiful memories together. Our journey has been lined with hardship and sorrow. Even though this is the end of that particular journey, at least it is the happiest of endings. It has all been worth it and I don't regret a thing.
